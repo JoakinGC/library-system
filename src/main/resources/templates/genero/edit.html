@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{genero.edit.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{genero.edit.headline}]]</h1>
+                <div>
+                    <a th:href="@{/generos}" class="btn btn-secondary">[[#{genero.edit.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('genero')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='genero', field='idGenero', disabled=true, type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='genero', field='nombre')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='genero', field='libroGeneroLibroses', type='multiselect')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='genero', field='generoRevistaRevistas', type='multiselect')}" />
+                <input type="submit" th:value="#{genero.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

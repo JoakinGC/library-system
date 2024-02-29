@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8">
+        <title>[[#{usuario.list.headline}]]</title>
+        <!--Favicon-->
+        <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+        <!--Style-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/menuSupervisores.css}">
+        <!-- Fonts Google-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
+    </head>
+    <body>
+
+
+    <header class="container-head">
+        <h1 class="title-head">BIENVENIDO Rancio</h1>
+    </header>
+    <div class="container-content">
+        <nav class="nav-container">
+            <a th:href="@{/menuSupervisor}" class="va">Principal</a>
+            <a th:href="@{/usuarios/productividad}" class="va">Productividad</a>
+            <a th:href="@{/usuarios}" class="youAreHere va">Empleados</a>
+            <a th:href="@{/fichados}" class="va">Fichados</a>
+            <a th:href="@{/cerrarSesion}" class="va">Cerrar Sesión</a>
+        </nav>
+        <main class="container-main">
+            <div layout:fragment="content">
+                <div class="d-flex flex-wrap mb-4 ">
+                    <h1 class="flex-grow-1" style="color: white;">[[#{usuario.list.headline}]]</h1>
+                </div>
+                <div th:if="${usuarios.empty}">[[#{usuario.list.empty}]]</div>
+                <div th:if="${!usuarios.empty}" class="div-table-responsive">
+                    <div class="div-table">
+                        <div class="div-table-header">
+                            <div class="div-table-cell">[[#{usuario.idUser.label}]]</div>
+                            <div class="div-table-cell">[[#{usuario.nombre.label}]]</div>
+                            <div class="div-table-cell">[[#{usuario.apellido.label}]]</div>
+                            <div class="div-table-cell">[[#{usuario.diaAlta.label}]]</div>
+                            <div class="div-table-cell">[[#{usuario.diaBaja.label}]]</div>
+                            <div class="div-table-cell">[[#{usuario.contresena.label}]]</div>
+                            <div class="div-table-cell">[[#{usuario.dni.label}]]</div>
+                            <div class="div-table-cell">[[#{usuario.edad.label}]]</div>
+                            <div class="div-table-cell">¿Qué hacer?</div>
+                        </div>
+                        <div class="div-table-body">
+                            <div th:each="usuario : ${usuarios}" class="div-table-row">
+                                <div class="div-table-cell">[[${usuario.idUser}]]</div>
+                                <div class="div-table-cell">[[${usuario.nombre}]]</div>
+                                <div class="div-table-cell">[[${usuario.apellido}]]</div>
+                                <div class="div-table-cell">[[${usuario.diaAlta}]]</div>
+                                <div class="div-table-cell">[[${usuario.diaBaja}]]</div>
+                                <div class="div-table-cell">[[${usuario.contresena}]]</div>
+                                <div class="div-table-cell">[[${usuario.dni}]]</div>
+                                <div class="div-table-cell">[[${usuario.edad}]]</div>
+                                <div class="div-table-cell">
+                                    <div class="float-end text-nowrap botones-contenedor">
+                                        <!-- Botón de edición (ahora utilizando solo .form_button para ambos) -->
+                                        <a th:href="@{/usuarios/edit/{idUser}(idUser=${usuario.idUser})}" class="btn btn-sm btn-secondary form_button">[[#{usuario.list.edit}]]</a>
+
+                                        <!-- Botón de eliminación dentro del formulario -->
+                                        <form th:action="@{/usuarios/delete/{idUser}(idUser=${usuario.idUser})}" th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                                            <button type="submit" class="btn btn-sm btn-secondary form_button">[[#{usuario.list.delete}]]</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap mb-4 ">
+                    <a th:href="@{/usuarios/add}" class="btn btn-primary ms-2 fixed-bottom-right addBtn gg">[[#{usuario.list.createNew}]]</a>
+                </div>
+            </div>
+        </main>
+    </div>
+    </body>
+</html>

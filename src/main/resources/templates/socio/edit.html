@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{socio.edit.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{socio.edit.headline}]]</h1>
+                <div>
+                    <a th:href="@{/socios}" class="btn btn-secondary">[[#{socio.edit.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('socio')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='socio', field='idSocio', disabled=true, type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='socio', field='nombre')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='socio', field='apellido')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='socio', field='telefono', type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='socio', field='dni')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='socio', field='direccion')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='socio', field='multa', type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='socio', field='multaTotal', type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='socio', field='prestamo', type='select')}" />
+                <input type="submit" th:value="#{socio.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

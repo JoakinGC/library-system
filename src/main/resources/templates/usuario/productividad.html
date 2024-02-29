@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+
+    <title>La Tercera Venida</title>
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <!--Style-->
+    <link rel="stylesheet" type="text/css" th:href="@{../css/menuSupervisores.css}">
+    <!-- Fonts Google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="container-head">
+    <h1 class="title-head">BIENVENIDO Rancio</h1>
+</header>
+<div class="container-content">
+    <nav class="nav-container">
+        <a th:href="@{/menuSupervisor}" class="va">Principal</a>
+        <a th:href="@{/usuarios/productividad}" class="youAreHere va">Productividad</a>
+        <a th:href="@{/usuarios}" class="va">Empleados</a>
+        <a th:href="@{/fichados}" class="va">Fichados</a>
+        <a th:href="@{/cerrarSesion}" class="va">Cerrar Sesión</a>
+    </nav>
+    <main class="container-main">
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4 ">
+                <h1 class="flex-grow-1" style="color: white;">Productividad</h1>
+            </div>
+            <div th:if="${!productividad.empty}" class="div-table-responsive">
+                <div class="div-table">
+                    <div class="div-table-header">
+                        <div class="div-table-cell">ID</div>
+                        <div class="div-table-cell">Nombre</div>
+                        <div class="div-table-cell">Apellido</div>
+                        <div class="div-table-cell">Cantidad de Préstamos</div>
+                        <div class="div-table-cell">Cantidad de Préstamos</div>
+                    </div>
+                    <div class="div-table-body">
+                        <div th:each="productividad : ${productividad}" class="div-table-row">
+                            <div class="div-table-cell" th:text="${productividad.id}"></div>
+                            <div class="div-table-cell" th:text="${productividad.nombre}"></div>
+                            <div class="div-table-cell" th:text="${productividad.apellido}"></div>
+                            <div class="div-table-cell" th:text="${productividad['COUNT(p.id_prestamo)']}"></div>
+                            <div class="div-table-cell" th:text="${productividad['COUNT(p.fecha_entrega)']}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

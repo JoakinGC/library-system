@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        >
+    <head>
+        <title>La Tercera Venida   </title>
+        <!--Favicon-->
+        <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+        <!--Style-->
+        <link rel="stylesheet" type="text/css" th:href="@{css/login.css}">
+        <!-- Fonts Google-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        
+        <nav>
+            <div class="container-logo">
+                <img class="logo-img" th:src="@{/images/logoTercera1.png}">
+                
+            </div>
+        </nav>
+             
+                
+                <form class="container-log-in"  th:action="@{./prueba}" method="post">
+                    <h1 class="title-log-in">Log In</h1>
+                    <input type="text" class="inputs-log-in" placeholder="Username" th:value="${name}" name="nombre">
+                    <input type="password" class="inputs-log-in" placeholder="Password" th:value="${contresena}" name="contresena">
+                    <input type="submit" class="btn-enviar" value="LOG IN">
+                    <div th:if="${error}">
+                        <div th:switch="${error}">
+                            <p th:case="'400'">Error 400: User name no puede estar vacio</p>
+                            <p th:case="'401'">Error 401: La contraseña no puede estar vacio</p>
+                            <p th:case="'403'">Error 403: Credeciales Invalidos</p>
+                            <p th:case="'500'">Error 500: Error interno del servidor</p>
+                            <p th:case="*">Otro tipo de error</p>
+                        </div>                        
+                    </div>                                       
+                </form>
+                  
+
+    </body>
+</html>

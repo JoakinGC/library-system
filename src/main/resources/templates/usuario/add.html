@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8">
+        <title>[[#{usuario.list.headline}]]</title>
+        <!--Favicon-->
+        <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+        <!--Style-->
+        <link rel="stylesheet" type="text/css" th:href="@{../css/forms.css}">
+        <!-- Fonts Google-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{usuario.add.headline}]]</h1>
+                <div>
+                    <a th:href="@{/usuarios}" class="btn btn-secondary">[[#{usuario.add.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('usuario')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='usuario', field='nombre')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='usuario', field='apellido')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='usuario', field='diaAlta')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='usuario', field='diaBaja')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='usuario', field='contresena')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='usuario', field='dni')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='usuario', field='edad', type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='usuario', field='idSuper', type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='usuario', field='fichadoUserFichadoes', type='multiselect')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='usuario', field='rol', type='select')}" />
+                <input type="submit" th:value="#{usuario.add.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

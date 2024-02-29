@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+
+  <title>La Tercera Venida   </title>
+  <!--Favicon-->
+  <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+  <!--Style-->
+  <link rel="stylesheet" type="text/css" th:href="@{css/menuEmpleados.css}">
+  <!-- Fonts Google-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+<header class="container-head">
+  <h1 class="title-head">BIENVENIDO Rancio</h1>
+</header>
+<div class="container-content">
+  <nav class="nav-container">
+    <input type="button" value="Principal" class="youAreHere">
+    <input type="button" value="Prestamos">
+    <input type="button" value="Devoluciones">
+    <input type="button" value="Socios">
+    <input type="button" value="Libros">
+    <input type="button" value="Revistas">
+    <input type="button" value="Cerrar Sessión">
+  </nav>
+  <main class="container-main">
+    <div class="content-main">
+      <div class="opacity-uno">
+        <h2 class="title-content">Sistema de Gestion de Libros y Revistas</h2>
+        <p class="parrafo-content">Sistema para administración de:</p>
+        <ul>
+          <li>Socios</li>
+          <li>Libros y Devoluciones</li>
+          <li>Prestamos</li>
+        </ul>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,260 @@
+/*Preconfiguraciones*/
+body,
+h1,
+h2,
+h3,
+p,
+figure,
+blockquote,
+dl,
+dd,
+ol,
+ul,
+table {
+  margin: 0;
+  padding: 0;
+}
+
+/*Header*/
+.container-head {
+  margin: 10px;
+  margin-top: 10px;
+  background-color: #039f00;
+  border: 2px solid #039f00;
+  border-radius: 5px;
+  height: 33.33vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.title-head {
+  font-size: 15vh;
+  text-align: center;
+  color: #fff;
+  font-family: "ABeeZee", sans-serif;
+}
+
+/*Container del contenido y butones*/
+
+.container-content {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-direction: row;
+  width: 100%;
+  height: 66.66vh;
+}
+
+/*Nav*/
+.nav-container {
+  width: 20%;
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #039f00;
+  border: 2px solid #039f00;
+  border-radius: 5px;
+  height: 100%;
+  padding-bottom: 5px;
+}
+
+.va {
+  background-color: #6ccd6a;
+  color: #fff;
+  font-family: "ABeeZee", sans-serif;
+  width: 100%;
+  height: 9vh;
+  margin-top: 1vh;
+  margin-right: 15px;
+  margin-right: 15px;
+  border: 2px solid #6ccd6a;
+  border-radius: 5px;
+  font-size: 3vh;
+  display: flex; /* Utiliza flexbox */
+  align-items: center; /* Centra verticalmente */
+  padding-left: 5px;
+  text-decoration: none; /* Quita el subrayado */
+}
+
+.form_button {
+  background-color: #6ccd6a;
+  border: 2px solid #6ccd6a;
+  color: #fff;
+  margin-top: 1vh;
+  padding: 5px 10px; /* Ajusta el relleno según necesites */
+  border-radius: 3px;
+  font-family: "ABeeZee", sans-serif;
+  font-size: 2.1vh;
+  display: inline-block; /* Esto permite que el elemento sea tratado como inline pero respetando las propiedades de ancho y alto */
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box; /* Esto asegura que el padding y border sean incluidos en el cálculo del ancho total */
+  width: 10vh; /* Ancho fijo para ambos botones */
+}
+
+/* Opcional: Ajusta el margen para asegurar que haya espacio entre los botones */
+.form_button + .form_button, .form_button + form, form + .form_button {
+  margin-left: 3px;
+}
+
+.addBtn{
+    background-color: #05ff00;
+    color: #fff;
+    font-family: "ABeeZee", sans-serif;
+    height: 9vh;
+    margin-top: 1vh;
+    margin-right: 15px;
+    margin-right: 15px;
+    border: 2px solid #05ff00;
+    border-radius: 5px;
+    font-size: 3vh;
+    display: flex; /* Utiliza flexbox */
+    align-items: center; /* Centra verticalmente */
+    padding-left: 5px;
+    text-decoration: none; /* Quita el subrayado */
+}
+
+.gg::hover{
+   background-color: #A4FF8D;
+}
+
+.fixed-bottom-right {
+    bottom: 20px; /* Espaciado desde el fondo */
+    right: 20px; /* Espaciado desde la derecha */
+    z-index: 1000; /* Asegura que el botón se muestre sobre otros elementos */
+}
+
+.botones-contenedor {
+    display: flex;
+    justify-content: flex-start; /* Ajusta esto según necesites */
+    align-items: center; /* Asegura que los elementos estén alineados verticalmente */
+    width: 100%; /* O el ancho que prefieras */
+}
+
+main {
+  font-family: "ABeeZee", sans-serif;
+}
+
+.youAreHere {
+  background-color: #05ff00;
+  border: 2px solid #05ff00;
+}
+
+.div-table-responsive {
+  max-height: 300px;
+  overflow-y: auto;
+  border-radius: 5px;
+}
+
+.div-table {
+  display: table;
+  width: 100%;
+}
+
+.div-table-header,
+.div-table-row {
+  display: table-row;
+}
+
+.div-table-cell {
+  display: table-cell;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  background-color: #aadca2; /* Para las celdas del cuerpo */
+}
+
+.div-table-header .div-table-cell {
+  background-color: #42ff6c; /* Color de fondo para los encabezados */
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-radius: 2px;
+}
+
+.div-table-body {
+  display: table-row-group;
+}
+
+.va:hover,
+button:hover {
+  color: #42ff6c;
+  cursor: pointer;
+}
+
+.youAreHere:hover{
+    color: #fff;
+}
+
+div::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+div::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: #05ff00;
+  border-radius: 50px;
+}
+
+/*Main*/
+/* Main */
+
+.container-main {
+  background-color: #039f00;
+  background-size: cover; /* Ajusta la imagen al tamaño completo del contenedor */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  border: 2px solid #039f00;
+  border-radius: 5px;
+}
+
+.content-main {
+  width: 80%; /* El 60% del ancho del contenedor principal */
+  height: 80%; /* El 80% de la altura del contenedor principal */
+  background-color: #6ccd6a;
+  padding: 10px; /* Opcional: puedes usar padding en lugar de margen según tu preferencia */
+}
+
+.title-content {
+  margin-top: 2vh;
+  text-align: center;
+  font-size: 10vh;
+  color: #fff;
+  font-family: "ABeeZee", sans-serif;
+  font-weight: bold;
+}
+
+.parrafo-content {
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+  color: #fff;
+  font-family: "ABeeZee", sans-serif;
+  font-size: 5vh;
+}
+
+ul {
+  list-style-position: inside; /* Coloca el punto de la lista dentro del contenedor */
+  padding-left: 0; /* Elimina el relleno predeterminado de la lista */
+}
+
+li {
+  color: #fff;
+  font-family: "ABeeZee", sans-serif;
+  font-size: 5vh;
+  text-align: left; /* Alinea el texto a la izquierda */
+}
