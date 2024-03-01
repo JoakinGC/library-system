@@ -37,4 +37,16 @@ public class LibrosDTO {
         this.libroAutorAutors = libroAutorAutors;
     }
 
+<<<<<<< HEAD
+=======
+
+    @Override
+    public String toString() {
+        return "LibrosDTO{" +
+                "isbn=" + isbn +
+                ", titulo='" + titulo + '\'' +
+                ", libroAutorAutors=" + libroAutorAutors +
+                '}';
+    }
+>>>>>>> Joaquin-System
 }

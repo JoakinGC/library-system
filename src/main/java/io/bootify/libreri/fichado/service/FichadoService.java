@@ -5,7 +5,11 @@ import io.bootify.libreri.fichado.model.FichadoDTO;
 import io.bootify.libreri.fichado.repos.FichadoRepository;
 import io.bootify.libreri.usuario.domain.Usuario;
 import io.bootify.libreri.usuario.repos.UsuarioRepository;
+<<<<<<< HEAD
 import io.bootify.libreri.util.NotFoundException;
+=======
+import io.bootify.libreri.errors.NotFoundException;
+>>>>>>> Joaquin-System
 import io.bootify.libreri.util.WebUtils;
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -21,7 +25,11 @@ public class FichadoService {
     private final UsuarioRepository usuarioRepository;
 
     public FichadoService(final FichadoRepository fichadoRepository,
+<<<<<<< HEAD
                           final UsuarioRepository usuarioRepository) {
+=======
+            final UsuarioRepository usuarioRepository) {
+>>>>>>> Joaquin-System
         this.fichadoRepository = fichadoRepository;
         this.usuarioRepository = usuarioRepository;
     }

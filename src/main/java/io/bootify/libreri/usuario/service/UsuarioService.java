@@ -9,6 +9,7 @@ import io.bootify.libreri.roles.repos.RolesRepository;
 import io.bootify.libreri.usuario.domain.Usuario;
 import io.bootify.libreri.usuario.model.UsuarioDTO;
 import io.bootify.libreri.usuario.repos.UsuarioRepository;
+<<<<<<< HEAD
 import io.bootify.libreri.util.NotFoundException;
 import io.bootify.libreri.util.WebUtils;
 import jakarta.transaction.Transactional;
@@ -22,6 +23,16 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+=======
+import io.bootify.libreri.errors.NotFoundException;
+import io.bootify.libreri.util.WebUtils;
+import jakarta.transaction.Transactional;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+>>>>>>> Joaquin-System
 
 
 @Service
@@ -33,6 +44,10 @@ public class UsuarioService {
     private final RolesRepository rolesRepository;
     private final PrestamoRepository prestamoRepository;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> Joaquin-System
     public UsuarioService(final UsuarioRepository usuarioRepository,
             final FichadoRepository fichadoRepository, final RolesRepository rolesRepository,
             final PrestamoRepository prestamoRepository) {
@@ -93,7 +108,12 @@ public class UsuarioService {
         usuarioDTO.setFichadoUserFichadoes(usuario.getFichadoUserFichadoes().stream()
                 .map(fichado -> fichado.getIdFichado())
                 .toList());
+<<<<<<< HEAD
         usuarioDTO.setRol(usuario.getRol() == null ? null : usuario.getRol().getIdRol());
+=======
+
+        usuarioDTO.setRol(usuario.getRol().getIdRol());
+>>>>>>> Joaquin-System
         return usuarioDTO;
     }
 
@@ -136,6 +156,7 @@ public class UsuarioService {
         return mapToDTO(usuario, new UsuarioDTO());
     }
 
+<<<<<<< HEAD
     public List<Map<String, Object>> getProductividad() {
         return usuarioRepository.productividad();
     }
@@ -143,5 +164,8 @@ public class UsuarioService {
     public void testeoProductividad(){
         usuarioRepository.productividad();
     }
+=======
+
+>>>>>>> Joaquin-System
 
 }

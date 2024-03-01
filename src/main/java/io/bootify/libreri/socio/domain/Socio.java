@@ -1,6 +1,7 @@
 package io.bootify.libreri.socio.domain;
 
 import io.bootify.libreri.prestamo.domain.Prestamo;
+<<<<<<< HEAD
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -11,6 +12,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import java.time.OffsetDateTime;
+=======
+import jakarta.persistence.*;
+
+import java.time.OffsetDateTime;
+import java.util.Set;
+
+>>>>>>> Joaquin-System
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -44,11 +52,18 @@ public class Socio {
     private Integer multa;
 
     @Column
+<<<<<<< HEAD
     private Integer multaTotal;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prestamo_id")
     private Prestamo prestamo;
+=======
+    private  Boolean activo;
+
+    @OneToMany(mappedBy = "socio")
+    private Set<Prestamo> socioPrestamoes;
+>>>>>>> Joaquin-System
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -114,6 +129,7 @@ public class Socio {
         this.multa = multa;
     }
 
+<<<<<<< HEAD
     public Integer getMultaTotal() {
         return multaTotal;
     }
@@ -128,6 +144,15 @@ public class Socio {
 
     public void setPrestamo(final Prestamo prestamo) {
         this.prestamo = prestamo;
+=======
+
+    public Set<Prestamo> getSocioPrestamoes() {
+        return socioPrestamoes;
+    }
+
+    public void setSocioPrestamoes(final Set<Prestamo> socioPrestamoes) {
+        this.socioPrestamoes = socioPrestamoes;
+>>>>>>> Joaquin-System
     }
 
     public OffsetDateTime getDateCreated() {
@@ -146,4 +171,14 @@ public class Socio {
         this.lastUpdated = lastUpdated;
     }
 
+<<<<<<< HEAD
+=======
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+>>>>>>> Joaquin-System
 }

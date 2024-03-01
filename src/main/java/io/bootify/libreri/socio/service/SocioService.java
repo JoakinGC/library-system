@@ -5,8 +5,15 @@ import io.bootify.libreri.prestamo.repos.PrestamoRepository;
 import io.bootify.libreri.socio.domain.Socio;
 import io.bootify.libreri.socio.model.SocioDTO;
 import io.bootify.libreri.socio.repos.SocioRepository;
+<<<<<<< HEAD
 import io.bootify.libreri.util.NotFoundException;
 import java.util.List;
+=======
+import io.bootify.libreri.errors.NotFoundException;
+import java.util.List;
+
+import io.bootify.libreri.errors.ReferencedWarning;
+>>>>>>> Joaquin-System
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +25,11 @@ public class SocioService {
     private final PrestamoRepository prestamoRepository;
 
     public SocioService(final SocioRepository socioRepository,
+<<<<<<< HEAD
             final PrestamoRepository prestamoRepository) {
+=======
+                        final PrestamoRepository prestamoRepository) {
+>>>>>>> Joaquin-System
         this.socioRepository = socioRepository;
         this.prestamoRepository = prestamoRepository;
     }
@@ -53,7 +64,10 @@ public class SocioService {
         socioRepository.deleteById(idSocio);
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> Joaquin-System
     private SocioDTO mapToDTO(final Socio socio, final SocioDTO socioDTO) {
         socioDTO.setIdSocio(socio.getIdSocio());
         socioDTO.setNombre(socio.getNombre());
@@ -62,8 +76,12 @@ public class SocioService {
         socioDTO.setDni(socio.getDni());
         socioDTO.setDireccion(socio.getDireccion());
         socioDTO.setMulta(socio.getMulta());
+<<<<<<< HEAD
         socioDTO.setMultaTotal(socio.getMultaTotal());
         socioDTO.setPrestamo(socio.getPrestamo() == null ? null : socio.getPrestamo().getIdPrestamo());
+=======
+        socioDTO.setActivo(socio.getActivo());
+>>>>>>> Joaquin-System
         return socioDTO;
     }
 
@@ -74,6 +92,7 @@ public class SocioService {
         socio.setDni(socioDTO.getDni());
         socio.setDireccion(socioDTO.getDireccion());
         socio.setMulta(socioDTO.getMulta());
+<<<<<<< HEAD
         socio.setMultaTotal(socioDTO.getMultaTotal());
         final Prestamo prestamo = socioDTO.getPrestamo() == null ? null : prestamoRepository.findById(socioDTO.getPrestamo())
                 .orElseThrow(() -> new NotFoundException("prestamo not found"));
@@ -81,4 +100,32 @@ public class SocioService {
         return socio;
     }
 
+=======
+        socio.setActivo(socioDTO.getActivo());
+        return socio;
+    }
+
+    public ReferencedWarning getReferencedWarning(final Integer idSocio) {
+        final ReferencedWarning referencedWarning = new ReferencedWarning();
+        final Socio socio = socioRepository.findById(idSocio)
+                .orElseThrow(NotFoundException::new);
+        final Prestamo socioPrestamo = prestamoRepository.findFirstBySocio(socio);
+        if (socioPrestamo != null) {
+            referencedWarning.setKey("socio.prestamo.socio.referenced");
+            referencedWarning.addParam(socioPrestamo.getIdPrestamo());
+            return referencedWarning;
+        }
+        return null;
+    }
+
+
+    public void incrementarMulta(Integer idSocio, int cantidad) {
+        SocioDTO socio = this.get(idSocio);
+        if (socio != null) {
+            if (socio.getMulta()==null) socio.setMulta(0);
+            socio.setMulta(socio.getMulta()+cantidad);
+            this.update(socio.getIdSocio(),socio);
+        }
+    }
+>>>>>>> Joaquin-System
 }

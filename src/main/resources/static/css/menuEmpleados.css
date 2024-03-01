@@ -3,16 +3,26 @@
 body, h1, h2, h3, p, figure, blockquote, dl, dd, ol, ul, table {
     margin: 0;
     padding: 0;
+<<<<<<< HEAD
 }
+=======
+  }
+>>>>>>> Joaquin-System
 
 
 /*Header*/
 .container-head{
     margin: 10px;
     margin-top: 10px;
+<<<<<<< HEAD
     background-color: #00109F;
     border: 2px solid #00109F;
     border-radius: 5px;
+=======
+    background-color: #00109F; 
+    border: 2px solid #00109F;
+    border-radius: 20px;
+>>>>>>> Joaquin-System
     height: 33.33vh;
     display: flex;
     align-items: center;
@@ -22,8 +32,14 @@ body, h1, h2, h3, p, figure, blockquote, dl, dd, ol, ul, table {
 
 .title-head{
     font-size: 15vh;
+<<<<<<< HEAD
     text-align: center  ;
     color: #fff;
+=======
+    text-align: center;
+    color: #fff;
+    font-family: 'ABeeZee', sans-serif;   
+>>>>>>> Joaquin-System
 }
 
 /*Container del contenido y butones*/
@@ -45,18 +61,26 @@ body, h1, h2, h3, p, figure, blockquote, dl, dd, ol, ul, table {
     justify-content: center;
     flex-direction: column;
     margin:0px;
+<<<<<<< HEAD
     margin-top: 5px;
+=======
+>>>>>>> Joaquin-System
     margin-left: 10px;
     margin-right: 10px;
     padding-left: 5px;
     padding-right: 5px;
     background-color: #00109F;
     border: 2px solid #00109F;
+<<<<<<< HEAD
     border-radius: 5px;
+=======
+    border-radius: 10px;
+>>>>>>> Joaquin-System
     height: 100%;
     padding-bottom: 5px;
 }
 
+<<<<<<< HEAD
 body{
      font-family: 'ABeeZee', sans-serif;
 }
@@ -65,6 +89,15 @@ input{
     background-color: #87A2FF;
     font-family: 'ABeeZee', sans-serif;
     color: #fff;
+=======
+a{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    background-color: #87A2FF;
+    color: #fff;
+    font-family: 'ABeeZee', sans-serif;
+>>>>>>> Joaquin-System
     width: 100%;
     height: 9vh;
     margin-top: 1vh;
@@ -74,6 +107,7 @@ input{
     text-align: left;
 }
 
+<<<<<<< HEAD
 .youAreHere{
     background-color: #2555FF;
     color: #fff;
@@ -81,13 +115,32 @@ input{
     height: 9vh;
     margin-top: 1vh;
     border: 2px solid #2555FF;
+=======
+a:hover{
+  background-color: #2555FF;
+  cursor: pointer;
+}
+
+input{
+    background-color: #87A2FF;
+    color: #fff;
+    font-family: 'ABeeZee', sans-serif;
+    width: 100%;
+    height: 9vh;
+    margin-top: 1vh;
+    border: 2px solid #87A2FF;
+>>>>>>> Joaquin-System
     border-radius: 5px;
     font-size: 3vh;
     text-align: left;
 }
 
 input:hover{
+<<<<<<< HEAD
     color: #42C6FF;
+=======
+    background-color: #2555FF;
+>>>>>>> Joaquin-System
     cursor: pointer;
 }
 
@@ -95,7 +148,11 @@ input:hover{
 /* Main */
 
 .container-main {
+<<<<<<< HEAD
     background-color: #00109F; /* Cambia "your_color_here" por el color que desees */
+=======
+    background-image: url(../images/image_supervisor_background.png);
+>>>>>>> Joaquin-System
     background-size: cover; /* Ajusta la imagen al tamaño completo del contenedor */
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat;
@@ -104,10 +161,17 @@ input:hover{
     display: flex;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
     margin-right: 5px;
     border: 2px solid #00109F;
     border-radius: 5px;
 }
+=======
+    margin-right: 10px;
+    border: 2px solid gray;
+    border-radius: 10px;
+  }
+>>>>>>> Joaquin-System
   
   .content-main {
     width: 80%; /* El 60% del ancho del contenedor principal */
@@ -116,6 +180,12 @@ input:hover{
     padding: 10px; /* Opcional: puedes usar padding en lugar de margen según tu preferencia */
     opacity: 0.7;
   }
+<<<<<<< HEAD
+=======
+ 
+    
+  
+>>>>>>> Joaquin-System
   
   .title-content {
     margin-top: 2vh;

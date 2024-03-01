@@ -10,7 +10,10 @@ public class RevistaDTO {
     @Size(max = 40)
     private String titulo;
 
+<<<<<<< HEAD
     private Integer ejemplar;
+=======
+>>>>>>> Joaquin-System
 
     public Integer getIdRevista() {
         return idRevista;
@@ -28,6 +31,7 @@ public class RevistaDTO {
         this.titulo = titulo;
     }
 
+<<<<<<< HEAD
     public Integer getEjemplar() {
         return ejemplar;
     }
@@ -36,4 +40,14 @@ public class RevistaDTO {
         this.ejemplar = ejemplar;
     }
 
+=======
+
+    @Override
+    public String toString() {
+        return "RevistaDTO{" +
+                "idRevista=" + idRevista +
+                ", titulo='" + titulo + '\'' +
+                '}';
+    }
+>>>>>>> Joaquin-System
 }

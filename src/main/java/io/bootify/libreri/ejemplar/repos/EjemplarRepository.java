@@ -4,6 +4,13 @@ import io.bootify.libreri.ejemplar.domain.Ejemplar;
 import io.bootify.libreri.libros.domain.Libros;
 import io.bootify.libreri.revista.domain.Revista;
 import org.springframework.data.jpa.repository.JpaRepository;
+<<<<<<< HEAD
+=======
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
+import java.util.Set;
+>>>>>>> Joaquin-System
 
 
 public interface EjemplarRepository extends JpaRepository<Ejemplar, Integer> {
@@ -12,4 +19,13 @@ public interface EjemplarRepository extends JpaRepository<Ejemplar, Integer> {
 
     Ejemplar findFirstByRevista(Revista revista);
 
+<<<<<<< HEAD
+=======
+    @Query("SELECT DISTINCT e.libro FROM Ejemplar e WHERE e.libro IS NOT NULL")
+    List<Libros> findAllLibrosWithEjemplar();
+
+    @Query("SELECT DISTINCT e.revista FROM Ejemplar e WHERE e.revista IS NOT NULL")
+    List<Revista> findAllRevistasWithEjemplar();
+
+>>>>>>> Joaquin-System
 }

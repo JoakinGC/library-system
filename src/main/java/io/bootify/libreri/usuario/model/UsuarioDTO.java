@@ -1,9 +1,25 @@
 package io.bootify.libreri.usuario.model;
 
+<<<<<<< HEAD
 import jakarta.validation.constraints.Size;
 import java.time.OffsetDateTime;
 import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
+=======
+import io.bootify.libreri.roles.domain.ERoles;
+import jakarta.validation.constraints.Size;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
+>>>>>>> Joaquin-System
 
 
 public class UsuarioDTO {
@@ -16,6 +32,13 @@ public class UsuarioDTO {
     @Size(max = 40)
     private String apellido;
 
+<<<<<<< HEAD
+=======
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
+>>>>>>> Joaquin-System
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssXXX")
     private OffsetDateTime diaAlta;
 
@@ -116,12 +139,26 @@ public class UsuarioDTO {
         this.fichadoUserFichadoes = fichadoUserFichadoes;
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> Joaquin-System
     public Integer getRol() {
         return rol;
     }
 
+<<<<<<< HEAD
     public void setRol(final Integer rol) {
         this.rol = rol;
     }
 
+=======
+    public void setRol(Integer rol) {
+        this.rol = rol;
+    }
+
+
+
+
+>>>>>>> Joaquin-System
 }

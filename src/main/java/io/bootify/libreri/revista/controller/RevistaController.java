@@ -4,6 +4,10 @@ import io.bootify.libreri.ejemplar.domain.Ejemplar;
 import io.bootify.libreri.ejemplar.repos.EjemplarRepository;
 import io.bootify.libreri.revista.model.RevistaDTO;
 import io.bootify.libreri.revista.service.RevistaService;
+<<<<<<< HEAD
+=======
+import io.bootify.libreri.socio.domain.Socio;
+>>>>>>> Joaquin-System
 import io.bootify.libreri.util.CustomCollectors;
 import io.bootify.libreri.util.WebUtils;
 import jakarta.validation.Valid;
@@ -42,7 +46,15 @@ public class RevistaController {
     @GetMapping
     public String list(final Model model) {
         model.addAttribute("revistas", revistaService.findAll());
+<<<<<<< HEAD
         return "revista/list";
+=======
+        System.out.println("Entra en list");
+        for(RevistaDTO r:revistaService.findAll()){
+            System.out.println(r.toString());
+        }
+        return "menuEmpleado/menuEmpleado";
+>>>>>>> Joaquin-System
     }
 
     @GetMapping("/add")

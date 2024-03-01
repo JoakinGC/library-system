@@ -1,23 +1,33 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
-    <head>
-        <title>[[#{libros.add.headline}]]</title>
-    </head>
-    <body>
-        <div layout:fragment="content">
-            <div class="d-flex flex-wrap mb-4">
-                <h1 class="flex-grow-1">[[#{libros.add.headline}]]</h1>
-                <div>
-                    <a th:href="@{/libross}" class="btn btn-secondary">[[#{libros.add.back}]]</a>
-                </div>
-            </div>
-            <div th:replace="~{fragments/forms::globalErrors('libros')}" />
-            <form th:action="${requestUri}" method="post">
-                <div th:replace="~{fragments/forms::inputRow(object='libros', field='titulo')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='libros', field='libroAutorAutors', type='multiselect')}" />
-                <input type="submit" th:value="#{libros.add.headline}" class="btn btn-primary mt-4" />
-            </form>
+      layout:decorate="~{layout}">
+<head>
+    <title>[[#{libros.add.headline}]]</title>
+    <!-- Enlace al archivo de estilo CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Enlace al archivo de script de Bootstrap (jQuery debe estar incluido antes) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="d-flex flex-wrap mb-4">
+        <h1 class="flex-grow-1">[[#{libros.add.headline}]]</h1>
+        <div>
+            <a th:href="@{/libros}" class="btn btn-secondary">[[#{libros.add.back}]]</a>
         </div>
-    </body>
+    </div>
+    <div th:replace="~{fragments/forms2::globalErrors('libros')}" />
+    <form th:action="${requestUri}" method="post">
+        <div th:replace="~{fragments/forms2::inputRow(object='libros', field='titulo')}" />
+        <div th:replace="~{fragments/forms2::inputRow(object='libros', field='libroAutorAutors', type='multiselect')}" />
+        <input type="submit" th:value="#{libros.add.headline}" class="btn btn-primary mt-4" />
+    </form>
+    <a th:href="@{/editorials}" class="btn btn-secondary">Agregar editorial libro</a>
+    <a th:href="@{/autors}" class="btn btn-secondary">Agregar Autor Nuevo</a>
+    <a th:href="@{/generos}" class="btn btn-secondary">Agregar Genero con libro</a>
+</div>
+</body>
 </html>

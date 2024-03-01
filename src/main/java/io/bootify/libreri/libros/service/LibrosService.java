@@ -11,7 +11,11 @@ import io.bootify.libreri.genero.repos.GeneroRepository;
 import io.bootify.libreri.libros.domain.Libros;
 import io.bootify.libreri.libros.model.LibrosDTO;
 import io.bootify.libreri.libros.repos.LibrosRepository;
+<<<<<<< HEAD
 import io.bootify.libreri.util.NotFoundException;
+=======
+import io.bootify.libreri.errors.NotFoundException;
+>>>>>>> Joaquin-System
 import io.bootify.libreri.util.WebUtils;
 import jakarta.transaction.Transactional;
 import java.util.Collections;

@@ -2,17 +2,39 @@ package io.bootify.libreri.prestamo.controller;
 
 import io.bootify.libreri.ejemplar.domain.Ejemplar;
 import io.bootify.libreri.ejemplar.repos.EjemplarRepository;
+<<<<<<< HEAD
 import io.bootify.libreri.prestamo.model.PrestamoDTO;
 import io.bootify.libreri.prestamo.service.PrestamoService;
+=======
+import io.bootify.libreri.errors.*;
+import io.bootify.libreri.libros.domain.Libros;
+import io.bootify.libreri.prestamo.domain.ETipos;
+import io.bootify.libreri.prestamo.domain.Prestamo;
+import io.bootify.libreri.prestamo.model.PrestamoDTO;
+import io.bootify.libreri.prestamo.repos.PrestamoRepository;
+import io.bootify.libreri.prestamo.service.PrestamoService;
+import io.bootify.libreri.revista.domain.Revista;
+import io.bootify.libreri.roles.domain.ERoles;
+import io.bootify.libreri.socio.domain.Socio;
+import io.bootify.libreri.socio.model.SocioDTO;
+import io.bootify.libreri.socio.repos.SocioRepository;
+import io.bootify.libreri.socio.service.SocioService;
+>>>>>>> Joaquin-System
 import io.bootify.libreri.usuario.domain.Usuario;
 import io.bootify.libreri.usuario.repos.UsuarioRepository;
 import io.bootify.libreri.util.CustomCollectors;
 import io.bootify.libreri.util.WebUtils;
 import jakarta.validation.Valid;
+<<<<<<< HEAD
+=======
+import org.apache.el.stream.Stream;
+import org.springframework.beans.factory.annotation.Autowired;
+>>>>>>> Joaquin-System
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,11 +43,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
+=======
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.yaml.snakeyaml.events.Event;
+
+import java.awt.*;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+//control de excepciones globales y login
+>>>>>>> Joaquin-System
 @Controller
 @RequestMapping("/prestamos")
 public class PrestamoController {
 
     private final PrestamoService prestamoService;
+<<<<<<< HEAD
     private final EjemplarRepository ejemplarRepository;
     private final UsuarioRepository usuarioRepository;
 
@@ -35,59 +72,201 @@ public class PrestamoController {
         this.prestamoService = prestamoService;
         this.ejemplarRepository = ejemplarRepository;
         this.usuarioRepository = usuarioRepository;
+=======
+    private final PrestamoRepository prestamoRepository;
+    private final EjemplarRepository ejemplarRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final SocioRepository socioRepository;
+    private final SocioService socioService;
+
+
+    public PrestamoController(final PrestamoService prestamoService, PrestamoRepository prestamoRepository,
+                              final EjemplarRepository ejemplarRepository,
+                              final UsuarioRepository usuarioRepository,
+                              final SocioRepository socioRepository,
+                              final SocioService socioService) {
+        this.prestamoService = prestamoService;
+        this.prestamoRepository = prestamoRepository;
+        this.ejemplarRepository = ejemplarRepository;
+        this.usuarioRepository = usuarioRepository;
+        this.socioRepository = socioRepository;
+        this.socioService = socioService;
+>>>>>>> Joaquin-System
     }
 
     @ModelAttribute
     public void prepareContext(final Model model) {
+<<<<<<< HEAD
         model.addAttribute("ejemplarValues", ejemplarRepository.findAll(Sort.by("idEjemplar"))
                 .stream()
                 .collect(CustomCollectors.toSortedMap(Ejemplar::getIdEjemplar, Ejemplar::getIdEjemplar)));
         model.addAttribute("empleValues", usuarioRepository.findAll(Sort.by("idUser"))
                 .stream()
                 .collect(CustomCollectors.toSortedMap(Usuario::getIdUser, Usuario::getNombre)));
+=======
+        List<Usuario> allUsuarios = usuarioRepository.findAll(Sort.by("idUser"));
+
+        List<Usuario> usuariosConRolId3 = allUsuarios.stream()
+                .filter(usuario -> usuario.getRol() != null && usuario.getRol().getIdRol() == 3)
+                .collect(Collectors.toList());
+
+
+
+        List<Ejemplar> allEjemplares = ejemplarRepository.findAll(Sort.by("idEjemplar"));
+
+
+        List<Ejemplar> ejemplaresDisponibles = allEjemplares.stream()
+                .filter(e -> !estaEnPrestamo(e)) // Implementa esta función
+                .collect(Collectors.toList());
+
+
+        List<Socio> allSocios = socioRepository.findAll(Sort.by("idSocio"));
+
+        List<Socio> sociosDisponibles = allSocios.stream()
+                .filter(s -> !tienePrestamos(s)) // Implementa esta función
+                .collect(Collectors.toList());
+
+
+
+
+
+        model.addAttribute("ejemplarValues", ejemplaresDisponibles
+                .stream()
+                .collect(CustomCollectors.toSortedMap(Ejemplar::getIdEjemplar, Ejemplar::getIdEjemplar)));
+        model.addAttribute("socioValues", sociosDisponibles
+                .stream()
+                .collect(CustomCollectors.toSortedMap(Socio::getIdSocio, Socio::getIdSocio)));
+        model.addAttribute("empleValues", usuariosConRolId3
+                .stream()
+                .collect(CustomCollectors.toSortedMap(Usuario::getIdUser, Usuario::getNombre)));
+        model.addAttribute("tipoValues", Arrays.stream(ETipos.values())
+                .filter(tipo -> tipo.equals(ETipos.LIBRO) || tipo.equals(ETipos.REVISTA))
+                .map(Enum::toString)
+                .collect(Collectors.toList()));
+>>>>>>> Joaquin-System
     }
 
     @GetMapping
     public String list(final Model model) {
         model.addAttribute("prestamoes", prestamoService.findAll());
+<<<<<<< HEAD
         return "prestamo/list";
     }
 
     @GetMapping("/add")
     public String add(@ModelAttribute("prestamo") final PrestamoDTO prestamoDTO) {
+=======
+        return "menuEmpleado/menuEmpleado";
+    }
+
+    @GetMapping("/add")
+    public String add(@ModelAttribute("prestamo") final PrestamoDTO prestamoDTO,Model model) {
+>>>>>>> Joaquin-System
         return "prestamo/add";
     }
 
     @PostMapping("/add")
     public String add(@ModelAttribute("prestamo") @Valid final PrestamoDTO prestamoDTO,
+<<<<<<< HEAD
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "prestamo/add";
         }
+=======
+                      final BindingResult bindingResult, final RedirectAttributes redirectAttributes,
+                      Model model) throws NotFoundEjemplar, NotFoundSocio, NotFoundEmpleado, ExceptionNoFoundPrestamo {
+
+
+        if (bindingResult.hasErrors()) {
+            return "prestamo/add";
+        }
+
+
+        if (prestamoDTO.getEjemplar() == null || prestamoDTO.getEjemplar().toString().isEmpty()) {
+            System.out.println(new EmptyParametrer("Ejemplar").getMessage());
+            model.addAttribute("errorFor", "vacioEjemplar");
+            return "prestamo/add";
+        }
+
+
+        if (prestamoDTO.getTipo() == null) {
+            System.out.println(new EmptyParametrer("Tipo").getMessage());
+            model.addAttribute("errorFor", "vacioTipo");
+            return "prestamo/add";
+        }
+
+        if (prestamoDTO.getEmple() == null || prestamoDTO.getEmple().toString().isEmpty()) {
+            System.out.println(new EmptyParametrer("Empleado").getMessage());
+            model.addAttribute("errorFor", "vacioEmpleado");
+            return "prestamo/add";
+        }
+
+        if (prestamoDTO.getSocio() == null) {
+            System.out.println(new EmptyParametrer("Socio").getMessage());
+            model.addAttribute("errorFor", "vacioSocio");
+            return "prestamo/add";
+        }
+
+
+        OffsetDateTime fechaActual = OffsetDateTime.now();
+        prestamoDTO.setFechaPrestamo(fechaActual);
+        prestamoDTO.setFechaFin(fechaActual.plusDays(30));
+        prestamoDTO.setEntregado(false);
+
+>>>>>>> Joaquin-System
         prestamoService.create(prestamoDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("prestamo.create.success"));
         return "redirect:/prestamos";
     }
 
+<<<<<<< HEAD
     @GetMapping("/edit/{idPrestamo}")
     public String edit(@PathVariable(name = "idPrestamo") final Integer idPrestamo,
             final Model model) {
+=======
+
+    @GetMapping("/edit/{idPrestamo}")
+    public String edit(@PathVariable(name = "idPrestamo") final Integer idPrestamo,
+                       final Model model) throws ExceptionNoFoundPrestamo {
+>>>>>>> Joaquin-System
         model.addAttribute("prestamo", prestamoService.get(idPrestamo));
         return "prestamo/edit";
     }
 
     @PostMapping("/edit/{idPrestamo}")
     public String edit(@PathVariable(name = "idPrestamo") final Integer idPrestamo,
+<<<<<<< HEAD
             @ModelAttribute("prestamo") @Valid final PrestamoDTO prestamoDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "prestamo/edit";
         }
         prestamoService.update(idPrestamo, prestamoDTO);
+=======
+                       @ModelAttribute("prestamo") @Valid final PrestamoDTO prestamoDTO,
+                       final BindingResult bindingResult, final RedirectAttributes redirectAttributes) throws ExceptionNoFoundPrestamo, NotFoundEjemplar, NotFoundSocio, NotFoundEmpleado {
+        if (bindingResult.hasErrors()) {
+            return "prestamo/edit";
+        }
+
+        PrestamoDTO prestamoDTO2 = prestamoService.get(idPrestamo);
+
+        prestamoDTO2.setFechaEntrega(OffsetDateTime.now().plusDays(5));
+        prestamoDTO2.setFechaFin(OffsetDateTime.now());
+
+        if(prestamoDTO2.getFechaEntrega().isAfter(prestamoDTO2.getFechaFin()) || prestamoDTO2.getFechaEntrega().isEqual(prestamoDTO2.getFechaFin())) {
+            System.out.println("Solo si el socio no entrego el  prestamo en tiempo");
+            socioService.incrementarMulta(prestamoDTO2.getSocio(),50);
+        }
+        prestamoDTO2.setEntregado(true);
+        prestamoService.update(idPrestamo, prestamoDTO2);
+
+>>>>>>> Joaquin-System
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("prestamo.update.success"));
         return "redirect:/prestamos";
     }
 
+<<<<<<< HEAD
     @PostMapping("/delete/{idPrestamo}")
     public String delete(@PathVariable(name = "idPrestamo") final Integer idPrestamo,
             final RedirectAttributes redirectAttributes) {
@@ -101,4 +280,70 @@ public class PrestamoController {
         return "redirect:/prestamos";
     }
 
+=======
+
+    @PostMapping("/buscar")
+    public String buscarPorId(@RequestParam(required = false) final Integer id ,
+                              final Model model) throws ExceptionNoFoundPrestamo {
+
+
+
+        if(id == null || id.toString().isEmpty()){
+            System.out.println(new EmptyParametrer("ID").getMessage());
+            return "redirect:/prestamos";
+        }
+
+        PrestamoDTO prestamo = (prestamoService.get(id) !=null) ? prestamoService.get(id): null ;
+        if (prestamo != null) {
+            model.addAttribute("prestamoes", prestamo);
+
+            if(prestamo.getFechaEntrega() != null){
+                model.addAttribute("entregado","");
+            }else if(prestamo.getFechaEntrega() == null){
+                model.addAttribute("noEntregado","");
+            }
+        } else {
+            model.addAttribute("mensaje", "No se encontró ningún préstamo con el ID proporcionado.");
+        }
+
+        return "prestamo/list";
+    }
+
+    @GetMapping("/buscarLibro")
+    public String buscarPorNombreLibro(@RequestParam(name = "nombreLibro") final String nombreLibro, final Model model) {
+        List<Prestamo> prestamosEncontrados = prestamoRepository.findByNombreLibro(nombreLibro);
+
+        if (!prestamosEncontrados.isEmpty()) {
+            model.addAttribute("prestamosLibro", prestamosEncontrados);
+        } else {
+            model.addAttribute("mensaje", "No se encontró ningún préstamo con el nombre de libro proporcionado.");
+        }
+
+        return "redirect:/prestamos";
+    }
+
+    @GetMapping("/buscarISBN")
+    public String buscarPorISBN(@RequestParam(name = "isbn") final String isbn, final Model model) {
+        Prestamo prestamo = prestamoRepository.findByIsbnLibro(isbn);
+
+        if (prestamo != null) {
+            model.addAttribute("prestamoEncontrado", prestamo);
+        } else {
+            model.addAttribute("mensaje", "No se encontró ningún préstamo con el ISBN de libro proporcionado.");
+        }
+
+        return "redirect:/prestamos";
+    }
+
+    private boolean estaEnPrestamo(Ejemplar ejemplar) {
+        List<Prestamo> prestamos = prestamoRepository.findByEjemplar(ejemplar);
+        return prestamos.stream().anyMatch(prestamo -> !prestamo.getEntregado());
+    }
+
+    private boolean tienePrestamos(Socio socio) {
+        List<Prestamo> prestamos = prestamoRepository.findBySocio(socio);
+        return prestamos.stream().anyMatch(prestamo -> !prestamo.getEntregado());
+    }
+
+>>>>>>> Joaquin-System
 }

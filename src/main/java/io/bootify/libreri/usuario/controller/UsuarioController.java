@@ -10,7 +10,10 @@ import io.bootify.libreri.util.CustomCollectors;
 import io.bootify.libreri.util.WebUtils;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Sort;
+<<<<<<< HEAD
 import org.springframework.http.ResponseEntity;
+=======
+>>>>>>> Joaquin-System
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,9 +24,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+<<<<<<< HEAD
 import java.util.List;
 import java.util.Map;
 
+=======
+>>>>>>> Joaquin-System
 
 @Controller
 @RequestMapping("/usuarios")
@@ -103,6 +109,7 @@ public class UsuarioController {
         return "redirect:/usuarios";
     }
 
+<<<<<<< HEAD
     @GetMapping("/productividad")
     public String getProductividad(final Model model) {
         List<Map<String, Object>> productividad = usuarioService.getProductividad();
@@ -115,3 +122,6 @@ public class UsuarioController {
     }
 
 }
+=======
+}
+>>>>>>> Joaquin-System

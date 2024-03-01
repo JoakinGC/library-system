@@ -3,6 +3,7 @@ package io.bootify.libreri.prestamo.domain;
 import io.bootify.libreri.ejemplar.domain.Ejemplar;
 import io.bootify.libreri.socio.domain.Socio;
 import io.bootify.libreri.usuario.domain.Usuario;
+<<<<<<< HEAD
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -13,6 +14,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+=======
+import jakarta.persistence.*;
+
+>>>>>>> Joaquin-System
 import java.time.OffsetDateTime;
 import java.util.Set;
 import org.springframework.data.annotation.CreatedDate;
@@ -29,8 +34,13 @@ public class Prestamo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPrestamo;
 
+<<<<<<< HEAD
     @Column(length = 8)
     private String tipo;
+=======
+    @Enumerated(EnumType.STRING)
+    private ETipos tipo;
+>>>>>>> Joaquin-System
 
     @Column
     private OffsetDateTime fechaPrestamo;
@@ -41,12 +51,24 @@ public class Prestamo {
     @Column
     private OffsetDateTime fechaEntrega;
 
+<<<<<<< HEAD
+=======
+    @Column
+    private Boolean entregado;
+
+>>>>>>> Joaquin-System
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ejemplar_id")
     private Ejemplar ejemplar;
 
+<<<<<<< HEAD
     @OneToMany(mappedBy = "prestamo")
     private Set<Socio> prestamoSocios;
+=======
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "socio_id")
+    private Socio socio;
+>>>>>>> Joaquin-System
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "emple_id")
@@ -68,11 +90,19 @@ public class Prestamo {
         this.idPrestamo = idPrestamo;
     }
 
+<<<<<<< HEAD
     public String getTipo() {
         return tipo;
     }
 
     public void setTipo(final String tipo) {
+=======
+    public ETipos getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(ETipos tipo) {
+>>>>>>> Joaquin-System
         this.tipo = tipo;
     }
 
@@ -108,12 +138,21 @@ public class Prestamo {
         this.ejemplar = ejemplar;
     }
 
+<<<<<<< HEAD
     public Set<Socio> getPrestamoSocios() {
         return prestamoSocios;
     }
 
     public void setPrestamoSocios(final Set<Socio> prestamoSocios) {
         this.prestamoSocios = prestamoSocios;
+=======
+    public Socio getSocio() {
+        return socio;
+    }
+
+    public void setSocio(final Socio socio) {
+        this.socio = socio;
+>>>>>>> Joaquin-System
     }
 
     public Usuario getEmple() {
@@ -140,4 +179,14 @@ public class Prestamo {
         this.lastUpdated = lastUpdated;
     }
 
+<<<<<<< HEAD
+=======
+    public Boolean getEntregado() {
+        return entregado;
+    }
+
+    public void setEntregado(Boolean entregado) {
+        this.entregado = entregado;
+    }
+>>>>>>> Joaquin-System
 }

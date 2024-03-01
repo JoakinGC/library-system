@@ -1,44 +1,45 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
-    <head>
-        <title>[[#{genero.list.headline}]]</title>
-    </head>
-    <body>
-        <div layout:fragment="content">
-            <div class="d-flex flex-wrap mb-4">
-                <h1 class="flex-grow-1">[[#{genero.list.headline}]]</h1>
-                <div>
-                    <a th:href="@{/generos/add}" class="btn btn-primary ms-2">[[#{genero.list.createNew}]]</a>
-                </div>
-            </div>
-            <div th:if="${generoes.empty}">[[#{genero.list.empty}]]</div>
-            <div th:if="${!generoes.empty}" class="table-responsive">
-                <table class="table table-striped table-hover align-middle">
-                    <thead>
-                        <tr>
-                            <th scope="col">[[#{genero.idGenero.label}]]</th>
-                            <th scope="col">[[#{genero.nombre.label}]]</th>
-                            <th><!-- --></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="genero : ${generoes}">
-                            <td>[[${genero.idGenero}]]</td>
-                            <td>[[${genero.nombre}]]</td>
-                            <td>
-                                <div class="float-end text-nowrap">
-                                    <a th:href="@{/generos/edit/{idGenero}(idGenero=${genero.idGenero})}" class="btn btn-sm btn-secondary">[[#{genero.list.edit}]]</a>
-                                    <form th:action="@{/generos/delete/{idGenero}(idGenero=${genero.idGenero})}"
-                                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
-                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{genero.list.delete}]]</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+      layout:decorate="~{layout}">
+<head>
+    <title>[[#{genero.list.headline}]]</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="d-flex flex-wrap mb-4">
+        <h1 class="flex-grow-1">[[#{genero.list.headline}]]</h1>
+        <div>
+            <a th:href="@{/generos/add}" class="btn btn-primary ms-2">[[#{genero.list.createNew}]]</a>
+            <a th:href="@{/libros}" class="btn btn-primary ms-2">Volver</a>
         </div>
-    </body>
+    </div>
+    <div th:if="${generoes.empty}">[[#{genero.list.empty}]]</div>
+    <div th:if="${!generoes.empty}" class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead>
+            <tr>
+                <th scope="col">[[#{genero.idGenero.label}]]</th>
+                <th scope="col">[[#{genero.nombre.label}]]</th>
+                <th><!-- --></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="genero : ${generoes}">
+                <td>[[${genero.idGenero}]]</td>
+                <td>[[${genero.nombre}]]</td>
+                <td>
+                    <div class="float-end text-nowrap">
+                        <a th:href="@{/generos/edit/{idGenero}(idGenero=${genero.idGenero})}" class="btn btn-sm btn-secondary">[[#{genero.list.edit}]]</a>
+                        <form th:action="@{/generos/delete/{idGenero}(idGenero=${genero.idGenero})}"
+                              th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-secondary">[[#{genero.list.delete}]]</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
 </html>

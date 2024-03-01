@@ -14,6 +14,10 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.time.OffsetDateTime;
+<<<<<<< HEAD
+=======
+import java.util.Objects;
+>>>>>>> Joaquin-System
 import java.util.Set;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -35,6 +39,7 @@ public class Revista {
     @ManyToMany(mappedBy = "generoRevistaRevistas")
     private Set<Genero> generoRevistaGeneroes;
 
+<<<<<<< HEAD
     @OneToMany(mappedBy = "revista")
     private Set<Ejemplar> revistaEjemplars;
 
@@ -42,6 +47,8 @@ public class Revista {
     @JoinColumn(name = "ejemplar_id")
     private Ejemplar ejemplar;
 
+=======
+>>>>>>> Joaquin-System
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private OffsetDateTime dateCreated;
@@ -74,6 +81,7 @@ public class Revista {
         this.generoRevistaGeneroes = generoRevistaGeneroes;
     }
 
+<<<<<<< HEAD
     public Set<Ejemplar> getRevistaEjemplars() {
         return revistaEjemplars;
     }
@@ -89,6 +97,8 @@ public class Revista {
     public void setEjemplar(final Ejemplar ejemplar) {
         this.ejemplar = ejemplar;
     }
+=======
+>>>>>>> Joaquin-System
 
     public OffsetDateTime getDateCreated() {
         return dateCreated;
@@ -106,4 +116,28 @@ public class Revista {
         this.lastUpdated = lastUpdated;
     }
 
+<<<<<<< HEAD
+=======
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Revista revista)) return false;
+        return Objects.equals(idRevista, revista.idRevista) && Objects.equals(titulo, revista.titulo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idRevista, titulo);
+    }
+
+    @Override
+    public String toString() {
+        return "Revista{" +
+                "idRevista=" + idRevista +
+                ", titulo='" + titulo + '\'' +
+                ", dateCreated=" + dateCreated +
+                ", lastUpdated=" + lastUpdated +
+                '}';
+    }
+>>>>>>> Joaquin-System
 }

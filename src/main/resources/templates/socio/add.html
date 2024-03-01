@@ -1,29 +1,34 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
-    <head>
-        <title>[[#{socio.add.headline}]]</title>
-    </head>
-    <body>
-        <div layout:fragment="content">
-            <div class="d-flex flex-wrap mb-4">
-                <h1 class="flex-grow-1">[[#{socio.add.headline}]]</h1>
-                <div>
-                    <a th:href="@{/socios}" class="btn btn-secondary">[[#{socio.add.back}]]</a>
-                </div>
-            </div>
-            <div th:replace="~{fragments/forms::globalErrors('socio')}" />
-            <form th:action="${requestUri}" method="post">
-                <div th:replace="~{fragments/forms::inputRow(object='socio', field='nombre')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='socio', field='apellido')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='socio', field='telefono', type='number')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='socio', field='dni')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='socio', field='direccion')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='socio', field='multa', type='number')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='socio', field='multaTotal', type='number')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='socio', field='prestamo', type='select')}" />
-                <input type="submit" th:value="#{socio.add.headline}" class="btn btn-primary mt-4" />
-            </form>
+>
+<head>
+    <title>[[#{socio.add.headline}]]</title>
+    <!-- Enlace al archivo de estilo CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Enlace al archivo de script de Bootstrap (jQuery debe estar incluido antes) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="d-flex flex-wrap mb-4">
+        <h1 class="flex-grow-1">[[#{socio.add.headline}]]</h1>
+        <div>
+            <a th:href="@{/socios}" class="btn btn-secondary">[[#{socio.add.back}]]</a>
         </div>
-    </body>
+    </div>
+    <div th:replace="~{fragments/forms2::globalErrors('socio')}" />
+    <form th:action="${requestUri}" method="post">
+        <div th:replace="~{fragments/forms2::inputRow(object='socio', field='nombre')}" />
+        <div th:replace="~{fragments/forms2::inputRow(object='socio', field='apellido')}" />
+        <div th:replace="~{fragments/forms2::inputRow(object='socio', field='telefono', type='number')}" />
+        <div th:replace="~{fragments/forms2::inputRow(object='socio', field='dni')}" />
+        <div th:replace="~{fragments/forms2::inputRow(object='socio', field='direccion')}" />
+
+        <input type="submit" th:value="#{socio.add.headline}" class="btn btn-primary mt-4" />
+    </form>
+</div>
+</body>
 </html>

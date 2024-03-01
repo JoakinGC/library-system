@@ -1,5 +1,9 @@
 package io.bootify.libreri.util;
 
+<<<<<<< HEAD
+=======
+import io.bootify.libreri.roles.domain.ERoles;
+>>>>>>> Joaquin-System
 import io.bootify.libreri.roles.model.RolesDTO;
 import io.bootify.libreri.roles.service.RolesService;
 import io.bootify.libreri.usuario.model.UsuarioDTO;
@@ -30,7 +34,11 @@ public class Inicializer implements CommandLineRunner {
             if (rol1 == null) {
                 rol1 = new RolesDTO();
                 rol1.setIdRol(1);
+<<<<<<< HEAD
                 rol1.setRol("admin");
+=======
+                rol1.setRol(ERoles.ADMIN);
+>>>>>>> Joaquin-System
                 serRol.create(rol1);
             }
 
@@ -38,7 +46,11 @@ public class Inicializer implements CommandLineRunner {
             if (rol2 == null) {
                 rol2 = new RolesDTO();
                 rol2.setIdRol(2);
+<<<<<<< HEAD
                 rol2.setRol("supervisor");
+=======
+                rol2.setRol(ERoles.SUPERVISOR);
+>>>>>>> Joaquin-System
                 serRol.create(rol2);
             }
 
@@ -46,7 +58,11 @@ public class Inicializer implements CommandLineRunner {
             if (rol3 == null) {
                 rol3 = new RolesDTO();
                 rol3.setIdRol(3);
+<<<<<<< HEAD
                 rol3.setRol("empleado");
+=======
+                rol3.setRol(ERoles.EMPLEADO);
+>>>>>>> Joaquin-System
                 serRol.create(rol3);
             }
 
@@ -92,4 +108,8 @@ public class Inicializer implements CommandLineRunner {
     }
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Joaquin-System

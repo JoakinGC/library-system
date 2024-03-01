@@ -31,9 +31,12 @@ public class WebUtils {
         return messageSource.getMessage(code, args, code, localeResolver.resolveLocale(getRequest()));
     }
 
+<<<<<<< HEAD
     public static boolean isRequiredField(final Object dto, final String fieldName) throws
             NoSuchFieldException {
         return dto.getClass().getDeclaredField(fieldName).getAnnotation(NotNull.class) != null;
     }
 
+=======
+>>>>>>> Joaquin-System
 }
