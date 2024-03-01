@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{fichado.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{fichado.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/fichados/add}" class="btn btn-primary ms-2">[[#{fichado.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${fichadoes.empty}">[[#{fichado.list.empty}]]</div>
+            <div th:if="${!fichadoes.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{fichado.idFichado.label}]]</th>
+                            <th scope="col">[[#{fichado.fechaFichaje.label}]]</th>
+                            <th scope="col">[[#{fichado.horaEntrada.label}]]</th>
+                            <th scope="col">[[#{fichado.horaSalida.label}]]</th>
+                            <th scope="col">[[#{fichado.tiempoTotalDia.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="fichado : ${fichadoes}">
+                            <td>[[${fichado.idFichado}]]</td>
+                            <td>[[${fichado.fechaFichaje}]]</td>
+                            <td>[[${fichado.horaEntrada}]]</td>
+                            <td>[[${fichado.horaSalida}]]</td>
+                            <td>[[${fichado.tiempoTotalDia}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/fichados/edit/{idFichado}(idFichado=${fichado.idFichado})}" class="btn btn-sm btn-secondary">[[#{fichado.list.edit}]]</a>
+                                    <form th:action="@{/fichados/delete/{idFichado}(idFichado=${fichado.idFichado})}"
+                                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{fichado.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,157 @@
+
+/*Preconfiguraciones*/
+body, h1, h2, h3, p, figure, blockquote, dl, dd, ol, ul, table {
+    margin: 0;
+    padding: 0;
+  }
+
+
+/*Header*/
+.container-head{
+    margin: 10px;
+    margin-top: 10px;
+    background-color: #00109F; 
+    border: 2px solid #00109F;
+    border-radius: 20px;
+    height: 33.33vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.title-head{
+    font-size: 15vh;
+    text-align: center;
+    color: #fff;
+    font-family: 'ABeeZee', sans-serif;   
+}
+
+/*Container del contenido y butones*/
+
+.container-content{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-direction: row;
+    width: 100%;
+    height: 66.66vh;
+}
+
+/*Nav*/
+.nav-container{
+    width: 20%;
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    flex-direction: column;
+    margin:0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #00109F;
+    border: 2px solid #00109F;
+    border-radius: 10px;
+    height: 100%;
+    padding-bottom: 5px;
+}
+
+a{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    background-color: #87A2FF;
+    color: #fff;
+    font-family: 'ABeeZee', sans-serif;
+    width: 100%;
+    height: 9vh;
+    margin-top: 1vh;
+    border: 2px solid #87A2FF;
+    border-radius: 5px;
+    font-size: 3vh;
+    text-align: left;
+}
+
+a:hover{
+  background-color: #2555FF;
+  cursor: pointer;
+}
+
+input{
+    background-color: #87A2FF;
+    color: #fff;
+    font-family: 'ABeeZee', sans-serif;
+    width: 100%;
+    height: 9vh;
+    margin-top: 1vh;
+    border: 2px solid #87A2FF;
+    border-radius: 5px;
+    font-size: 3vh;
+    text-align: left;
+}
+
+input:hover{
+    background-color: #2555FF;
+    cursor: pointer;
+}
+
+/*Main*/
+/* Main */
+
+.container-main {
+    background-image: url(../images/image_supervisor_background.png);
+    background-size: cover; /* Ajusta la imagen al tamaño completo del contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat;
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    border: 2px solid gray;
+    border-radius: 10px;
+  }
+  
+  .content-main {
+    width: 80%; /* El 60% del ancho del contenedor principal */
+    height: 80%; /* El 80% de la altura del contenedor principal */
+    background-color: #7D95EA;
+    padding: 10px; /* Opcional: puedes usar padding en lugar de margen según tu preferencia */
+    opacity: 0.7;
+  }
+ 
+    
+  
+  
+  .title-content {
+    margin-top: 2vh;
+    text-align: center;
+    font-size: 10vh;
+    color: #fff;  
+    opacity: 1;  
+    font-family: 'ABeeZee', sans-serif;
+    font-weight: bold;
+  }
+
+  .parrafo-content{
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+    color: #fff;
+    font-family: 'ABeeZee', sans-serif;
+    font-size: 5vh;
+  }
+
+  ul {
+    list-style-position: inside; /* Coloca el punto de la lista dentro del contenedor */
+    padding-left: 0; /* Elimina el relleno predeterminado de la lista */
+  }
+
+  li {
+    color: #fff;
+    font-family: 'ABeeZee', sans-serif;
+    font-size: 5vh;
+    text-align: left; /* Alinea el texto a la izquierda */
+  }
+  

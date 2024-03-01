@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        >
+    <head>
+        <title>[[#{ejemplar.add.headline}]]</title>
+        <!-- Enlace al archivo de estilo CSS de Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <!-- Enlace al archivo de script de Bootstrap (jQuery debe estar incluido antes) -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{ejemplar.add.headline}]]</h1>
+                <div>
+                    <a th:href="@{/ejemplars}" class="btn btn-secondary">[[#{ejemplar.add.back}]]</a>
+                </div>
+            </div>
+            <div th:if="${error}">
+                <div th:switch="${error}">
+                    <p th:case="'libroYrevista'">Solo puede ser de un tipo NO de libro y revista a la vez</p>                        
+                    <p th:case="'nullos'">Tiene que elegir un tipo</p>                        
+                    
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms2::globalErrors('ejemplar')}" />
+            
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms2::inputRow(object='ejemplar', field='libro', type='select')}" />
+                <div th:replace="~{fragments/forms2::inputRow(object='ejemplar', field='revista', type='select')}" />
+                <input type="submit" th:value="#{ejemplar.add.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        >
+    <head>
+        <title>[[#{prestamo.add.headline}]]</title>
+        <!-- Enlace al archivo de estilo CSS de Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <!-- Enlace al archivo de script de Bootstrap (jQuery debe estar incluido antes) -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{prestamo.add.headline}]]</h1>
+                <div>
+                    <a th:href="@{/prestamos}" class="btn btn-secondary">[[#{prestamo.add.back}]]</a>
+                </div>
+            </div>
+            <div th:if="${errorFor}">
+                <div th:switch="${errorFor}">
+                    <p th:case="'vacioEjemplar'">NO pueden estar vacio el campo ejemplar</p>
+                    <p th:case="'vacioTipo'">NO pueden estar vacio el campo tipo</p>
+                    <p th:case="'vacioEmpleado'">NO pueden estar vacio el campo de ID de empleado</p>
+                    <p th:case="'vacioSocio'">NO pueden estar vacio el campo de ID de Socio</p>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms2::globalErrors('prestamo')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="fragments/forms2::inputRow(object='prestamo', field='tipo', type='select', required=${true})"></div>
+                <div th:replace="~{fragments/forms2::inputRow(object='prestamo', field='ejemplar', type='select')}" />
+                <div th:replace="~{fragments/forms2::inputRow(object='prestamo', field='socio', type='select')}" />
+                <div th:replace="~{fragments/forms2::inputRow(object='prestamo', field='emple', type='select')}" />
+                <input type="submit" th:value="#{prestamo.add.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

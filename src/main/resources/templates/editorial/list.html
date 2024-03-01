@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{editorial.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{editorial.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/editorials/add}" class="btn btn-primary ms-2">[[#{editorial.list.createNew}]]</a>
+                    <a th:href="@{/libros}" class="btn btn-primary ms-2">Volver</a>
+                </div>
+            </div>
+            <div th:if="${editorials.empty}">[[#{editorial.list.empty}]]</div>
+            <div th:if="${!editorials.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{editorial.idEditorial.label}]]</th>
+                            <th scope="col">[[#{editorial.nombre.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="editorial : ${editorials}">
+                            <td>[[${editorial.idEditorial}]]</td>
+                            <td>[[${editorial.nombre}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/editorials/edit/{idEditorial}(idEditorial=${editorial.idEditorial})}" class="btn btn-sm btn-secondary">[[#{editorial.list.edit}]]</a>
+                                    <form th:action="@{/editorials/delete/{idEditorial}(idEditorial=${editorial.idEditorial})}"
+                                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{editorial.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

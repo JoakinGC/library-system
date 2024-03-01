@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        >
+    <head>
+        <title>[[#{prestamo.list.headline}]]</title>
+         <!-- Enlace al archivo de estilo CSS de Bootstrap -->
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+         <!-- Enlace al archivo de script de Bootstrap (jQuery debe estar incluido antes) -->
+         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            
+            <!--Busqueda por id de prestamo-->
+        <div th:if="${prestamoes}">
+
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{prestamo.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/prestamos}" class="btn btn-secondary">[[#{prestamo.edit.back}]]</a>
+                </div>
+            </div>
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{prestamo.idPrestamo.label}]]</th>
+                            <th scope="col">[[#{prestamo.tipo.label}]]</th>
+                            <th scope="col">[[#{prestamo.fechaPrestamo.label}]]</th>
+                            <th scope="col">[[#{prestamo.fechaFin.label}]]</th>
+                            <th scope="col">[[#{prestamo.fechaEntrega.label}]]</th>
+                            <th scope="col">[[#{prestamo.ejemplar.label}]]</th>
+                            <th scope="col">[[#{prestamo.socio.label}]]</th>
+                            <th scope="col">[[#{prestamo.emple.label}]]</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:switch="${prestamoes}">
+                            <td>[[${prestamoes.idPrestamo}]]</td>
+                            <td>[[${prestamoes.tipo}]]</td>
+                            <td>[[${prestamoes.fechaPrestamo}]]</td>
+                            <td>[[${prestamoes.fechaFin}]]</td>
+                            <td>[[${prestamoes.fechaEntrega}]]</td>
+                            <td>[[${prestamoes.ejemplar}]]</td>
+                            <td>[[${prestamoes.socio}]]</td>
+                            <td>[[${prestamoes.emple}]]</td>
+                            <div th:if="${entregado}">
+                               <td>Prestamo devuelto</td> 
+                            </div>
+                            <div th:if="${noEntregado}">
+                                <td>
+                                    <div class="float-end text-nowrap">
+                                        <a th:href="@{/prestamos/edit/{idPrestamo}(idPrestamo=${prestamoes.idPrestamo})}" class="btn btn-sm btn-secondary">[[#{prestamo.list.edit}]]</a>
+                                    </div>
+                                </td>
+                            </div>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        
+
+        <!--Error de busqueda-->
+        <div th:if="${mensaje}">
+            <h1 th:text="${mensaje}"><h1>
+            
+        </div>
+        <div>
+            <a th:href="@{/prestamos}" class="btn btn-secondary">[[#{prestamo.edit.back}]]</a>
+        </div>
+    </div>
+    </body>
+</html>
