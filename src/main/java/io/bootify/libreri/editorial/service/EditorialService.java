@@ -5,11 +5,7 @@ import io.bootify.libreri.editorial.model.EditorialDTO;
 import io.bootify.libreri.editorial.repos.EditorialRepository;
 import io.bootify.libreri.libros.domain.Libros;
 import io.bootify.libreri.libros.repos.LibrosRepository;
-<<<<<<< HEAD
-import io.bootify.libreri.util.NotFoundException;
-=======
 import io.bootify.libreri.errors.NotFoundException;
->>>>>>> Joaquin-System
 import jakarta.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;

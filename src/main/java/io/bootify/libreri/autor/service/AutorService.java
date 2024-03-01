@@ -5,11 +5,7 @@ import io.bootify.libreri.autor.model.AutorDTO;
 import io.bootify.libreri.autor.repos.AutorRepository;
 import io.bootify.libreri.libros.domain.Libros;
 import io.bootify.libreri.libros.repos.LibrosRepository;
-<<<<<<< HEAD
-import io.bootify.libreri.util.NotFoundException;
-=======
 import io.bootify.libreri.errors.NotFoundException;
->>>>>>> Joaquin-System
 import io.bootify.libreri.util.WebUtils;
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -25,7 +21,7 @@ public class AutorService {
     private final LibrosRepository librosRepository;
 
     public AutorService(final AutorRepository autorRepository,
-            final LibrosRepository librosRepository) {
+                        final LibrosRepository librosRepository) {
         this.autorRepository = autorRepository;
         this.librosRepository = librosRepository;
     }

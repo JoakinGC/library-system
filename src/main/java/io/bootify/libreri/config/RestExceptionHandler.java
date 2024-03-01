@@ -1,14 +1,10 @@
 package io.bootify.libreri.config;
 
-<<<<<<< HEAD
-import io.bootify.libreri.model.ErrorResponse;
-import io.bootify.libreri.model.FieldError;
-import io.bootify.libreri.util.NotFoundException;
-=======
+
 import io.bootify.libreri.errors.model.ErrorResponse;
 import io.bootify.libreri.errors.model.FieldError;
 import io.bootify.libreri.errors.NotFoundException;
->>>>>>> Joaquin-System
+
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

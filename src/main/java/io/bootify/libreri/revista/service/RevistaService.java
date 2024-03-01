@@ -1,20 +1,12 @@
 package io.bootify.libreri.revista.service;
 
-<<<<<<< HEAD
-import io.bootify.libreri.ejemplar.domain.Ejemplar;
-=======
->>>>>>> Joaquin-System
 import io.bootify.libreri.ejemplar.repos.EjemplarRepository;
 import io.bootify.libreri.genero.domain.Genero;
 import io.bootify.libreri.genero.repos.GeneroRepository;
 import io.bootify.libreri.revista.domain.Revista;
 import io.bootify.libreri.revista.model.RevistaDTO;
 import io.bootify.libreri.revista.repos.RevistaRepository;
-<<<<<<< HEAD
-import io.bootify.libreri.util.NotFoundException;
-=======
 import io.bootify.libreri.errors.NotFoundException;
->>>>>>> Joaquin-System
 import io.bootify.libreri.util.WebUtils;
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -31,7 +23,7 @@ public class RevistaService {
     private final GeneroRepository generoRepository;
 
     public RevistaService(final RevistaRepository revistaRepository,
-            final EjemplarRepository ejemplarRepository, final GeneroRepository generoRepository) {
+                          final EjemplarRepository ejemplarRepository, final GeneroRepository generoRepository) {
         this.revistaRepository = revistaRepository;
         this.ejemplarRepository = ejemplarRepository;
         this.generoRepository = generoRepository;
@@ -64,11 +56,7 @@ public class RevistaService {
     }
 
     public void delete(final Integer idRevista) {
-<<<<<<< HEAD
-        final Revista revista = revistaRepository.findById(idRevista)
-=======
-            final  Revista revista = revistaRepository.findById(idRevista)
->>>>>>> Joaquin-System
+        final  Revista revista = revistaRepository.findById(idRevista)
                 .orElseThrow(NotFoundException::new);
         // remove many-to-many relations at owning side
         generoRepository.findAllByGeneroRevistaRevistas(revista)
@@ -79,21 +67,11 @@ public class RevistaService {
     private RevistaDTO mapToDTO(final Revista revista, final RevistaDTO revistaDTO) {
         revistaDTO.setIdRevista(revista.getIdRevista());
         revistaDTO.setTitulo(revista.getTitulo());
-<<<<<<< HEAD
-        revistaDTO.setEjemplar(revista.getEjemplar() == null ? null : revista.getEjemplar().getIdEjemplar());
-=======
->>>>>>> Joaquin-System
         return revistaDTO;
     }
 
     private Revista mapToEntity(final RevistaDTO revistaDTO, final Revista revista) {
         revista.setTitulo(revistaDTO.getTitulo());
-<<<<<<< HEAD
-        final Ejemplar ejemplar = revistaDTO.getEjemplar() == null ? null : ejemplarRepository.findById(revistaDTO.getEjemplar())
-                .orElseThrow(() -> new NotFoundException("ejemplar not found"));
-        revista.setEjemplar(ejemplar);
-=======
->>>>>>> Joaquin-System
         return revista;
     }
 
@@ -104,14 +82,7 @@ public class RevistaService {
         if (generoRevistaRevistasGenero != null) {
             return WebUtils.getMessage("revista.genero.generoRevistaRevistas.referenced", generoRevistaRevistasGenero.getIdGenero());
         }
-<<<<<<< HEAD
-        final Ejemplar revistaEjemplar = ejemplarRepository.findFirstByRevista(revista);
-        if (revistaEjemplar != null) {
-            return WebUtils.getMessage("revista.ejemplar.revista.referenced", revistaEjemplar.getIdEjemplar());
-        }
-=======
 
->>>>>>> Joaquin-System
         return null;
     }
 

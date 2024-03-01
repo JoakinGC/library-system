@@ -15,10 +15,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import java.time.OffsetDateTime;
-<<<<<<< HEAD
-=======
 import java.util.Objects;
->>>>>>> Joaquin-System
 import java.util.Set;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -126,8 +123,6 @@ public class Libros {
         this.lastUpdated = lastUpdated;
     }
 
-<<<<<<< HEAD
-=======
 
     @Override
     public boolean equals(Object o) {
@@ -150,5 +145,4 @@ public class Libros {
                 ", lastUpdated=" + lastUpdated +
                 '}';
     }
->>>>>>> Joaquin-System
 }

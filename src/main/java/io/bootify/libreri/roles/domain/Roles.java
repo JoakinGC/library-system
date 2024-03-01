@@ -1,18 +1,8 @@
 package io.bootify.libreri.roles.domain;
 
 import io.bootify.libreri.usuario.domain.Usuario;
-<<<<<<< HEAD
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-=======
 import jakarta.persistence.*;
 
->>>>>>> Joaquin-System
 import java.time.OffsetDateTime;
 import java.util.Set;
 import org.springframework.data.annotation.CreatedDate;
@@ -29,15 +19,10 @@ public class Roles {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idRol;
 
-<<<<<<< HEAD
-    @Column(length = 40)
-    private String rol;
-=======
     @Column
     @Enumerated(EnumType.STRING)
     private ERoles rol;
 
->>>>>>> Joaquin-System
 
     @OneToMany(mappedBy = "rol")
     private Set<Usuario> rolUsuarios;
@@ -58,19 +43,11 @@ public class Roles {
         this.idRol = idRol;
     }
 
-<<<<<<< HEAD
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(final String rol) {
-=======
     public ERoles getRol() {
         return rol;
     }
 
     public void setRol(ERoles rol) {
->>>>>>> Joaquin-System
         this.rol = rol;
     }
 

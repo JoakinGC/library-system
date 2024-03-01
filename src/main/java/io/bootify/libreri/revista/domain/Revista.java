@@ -14,10 +14,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.time.OffsetDateTime;
-<<<<<<< HEAD
-=======
 import java.util.Objects;
->>>>>>> Joaquin-System
 import java.util.Set;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -39,16 +36,6 @@ public class Revista {
     @ManyToMany(mappedBy = "generoRevistaRevistas")
     private Set<Genero> generoRevistaGeneroes;
 
-<<<<<<< HEAD
-    @OneToMany(mappedBy = "revista")
-    private Set<Ejemplar> revistaEjemplars;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ejemplar_id")
-    private Ejemplar ejemplar;
-
-=======
->>>>>>> Joaquin-System
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private OffsetDateTime dateCreated;
@@ -81,24 +68,6 @@ public class Revista {
         this.generoRevistaGeneroes = generoRevistaGeneroes;
     }
 
-<<<<<<< HEAD
-    public Set<Ejemplar> getRevistaEjemplars() {
-        return revistaEjemplars;
-    }
-
-    public void setRevistaEjemplars(final Set<Ejemplar> revistaEjemplars) {
-        this.revistaEjemplars = revistaEjemplars;
-    }
-
-    public Ejemplar getEjemplar() {
-        return ejemplar;
-    }
-
-    public void setEjemplar(final Ejemplar ejemplar) {
-        this.ejemplar = ejemplar;
-    }
-=======
->>>>>>> Joaquin-System
 
     public OffsetDateTime getDateCreated() {
         return dateCreated;
@@ -116,8 +85,6 @@ public class Revista {
         this.lastUpdated = lastUpdated;
     }
 
-<<<<<<< HEAD
-=======
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -139,5 +106,4 @@ public class Revista {
                 ", lastUpdated=" + lastUpdated +
                 '}';
     }
->>>>>>> Joaquin-System
 }

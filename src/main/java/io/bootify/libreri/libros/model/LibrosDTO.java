@@ -37,8 +37,6 @@ public class LibrosDTO {
         this.libroAutorAutors = libroAutorAutors;
     }
 
-<<<<<<< HEAD
-=======
 
     @Override
     public String toString() {
@@ -48,5 +46,4 @@ public class LibrosDTO {
                 ", libroAutorAutors=" + libroAutorAutors +
                 '}';
     }
->>>>>>> Joaquin-System
 }

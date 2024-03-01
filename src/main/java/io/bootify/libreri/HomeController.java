@@ -1,30 +1,22 @@
 package io.bootify.libreri;
 
-<<<<<<< HEAD
+
 import io.bootify.libreri.fichado.domain.Fichado;
-=======
->>>>>>> Joaquin-System
+
+
 import io.bootify.libreri.fichado.model.FichadoDTO;
 import io.bootify.libreri.fichado.service.FichadoService;
 import io.bootify.libreri.usuario.model.UsuarioDTO;
 import io.bootify.libreri.usuario.service.UsuarioService;
-<<<<<<< HEAD
 import io.bootify.libreri.util.NotFoundException;
 import jakarta.servlet.http.HttpSession;
-=======
-import io.bootify.libreri.errors.NotFoundException;
 import org.springframework.security.access.prepost.PreAuthorize;
->>>>>>> Joaquin-System
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-<<<<<<< HEAD
 import java.time.Duration;
-=======
->>>>>>> Joaquin-System
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +27,9 @@ public class HomeController {
 
     private UsuarioService usuarioService;
     private FichadoService fichadoService;
-<<<<<<< HEAD
-=======
 
->>>>>>> Joaquin-System
+
+
     public HomeController(final UsuarioService usuarioService, final FichadoService fichoService){
         this.usuarioService = usuarioService;
         this.fichadoService = fichoService;
@@ -50,7 +41,7 @@ public class HomeController {
         return "home/index";
     }
 
-<<<<<<< HEAD
+
     @GetMapping("/menuSupervisor")
     public String backMenuSupervisor(){
         return "menuSupervisor/menuSupervisor";
@@ -74,15 +65,8 @@ public class HomeController {
 
     @PostMapping("/prueba")
     public String processLogin(@RequestParam(required = false) String nombre, @RequestParam(required = false) String contresena, Model model, HttpSession session) {
-=======
+        
 
-
-
-
-
-    @PostMapping("/prueba")
-    public String processLogin(@RequestParam(required = false) String nombre, @RequestParam(required = false) String contresena, Model model) {
->>>>>>> Joaquin-System
         try {
             if (nombre == null) {
                 model.addAttribute("error", "400");
@@ -116,17 +100,16 @@ public class HomeController {
                     List<Integer> fichadoUserFichadoes = new ArrayList<>();
                     fichadoUserFichadoes.add(id);
 
-<<<<<<< HEAD
                     usuarioDTO.setFichadoUserFichadoes(fichadoUserFichadoes);
                     usuarioService.update(usuarioDTO.getIdUser(),usuarioDTO);
                     session.setAttribute("fichado", fichado);
                     session.setAttribute("id", id);
-=======
+
                     model.addAttribute("id",usuarioDTO.getIdUser());
                     model.addAttribute("idSuperivor",usuarioDTO.getIdSuper());
                     usuarioDTO.setFichadoUserFichadoes(fichadoUserFichadoes);
                     usuarioService.update(usuarioDTO.getIdUser(),usuarioDTO);
->>>>>>> Joaquin-System
+
                     return "menuSupervisor/menuSupervisor";
                 } else if (usuarioDTO.getRol() == 3) {
                     FichadoDTO fichado = new FichadoDTO();
@@ -136,12 +119,10 @@ public class HomeController {
                     List<Integer> fichadoUserFichadoes = new ArrayList<>();
                     fichadoUserFichadoes.add(id);
 
-<<<<<<< HEAD
-=======
                     String aux = usuarioDTO.getIdUser().toString();
                     model.addAttribute("id", usuarioDTO.getNombre());
                     model.addAttribute("main", "");
->>>>>>> Joaquin-System
+
                     usuarioDTO.setFichadoUserFichadoes(fichadoUserFichadoes);
                     usuarioService.update(usuarioDTO.getIdUser(),usuarioDTO);
                     return "menuEmpleado/menuEmpleado";

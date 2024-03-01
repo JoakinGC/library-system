@@ -2,11 +2,8 @@ package io.bootify.libreri.prestamo.controller;
 
 import io.bootify.libreri.ejemplar.domain.Ejemplar;
 import io.bootify.libreri.ejemplar.repos.EjemplarRepository;
-<<<<<<< HEAD
-import io.bootify.libreri.prestamo.model.PrestamoDTO;
-import io.bootify.libreri.prestamo.service.PrestamoService;
-=======
-import io.bootify.libreri.errors.*;
+import io.bootify.libreri.errors.EmptyParametrer;
+import io.bootify.libreri.errors.ExceptionNoFoundPrestamo;
 import io.bootify.libreri.libros.domain.Libros;
 import io.bootify.libreri.prestamo.domain.ETipos;
 import io.bootify.libreri.prestamo.domain.Prestamo;
@@ -19,31 +16,17 @@ import io.bootify.libreri.socio.domain.Socio;
 import io.bootify.libreri.socio.model.SocioDTO;
 import io.bootify.libreri.socio.repos.SocioRepository;
 import io.bootify.libreri.socio.service.SocioService;
->>>>>>> Joaquin-System
 import io.bootify.libreri.usuario.domain.Usuario;
 import io.bootify.libreri.usuario.repos.UsuarioRepository;
 import io.bootify.libreri.util.CustomCollectors;
 import io.bootify.libreri.util.WebUtils;
 import jakarta.validation.Valid;
-<<<<<<< HEAD
-=======
 import org.apache.el.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> Joaquin-System
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-
-=======
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.yaml.snakeyaml.events.Event;
@@ -56,23 +39,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 //control de excepciones globales y login
->>>>>>> Joaquin-System
 @Controller
 @RequestMapping("/prestamos")
 public class PrestamoController {
 
     private final PrestamoService prestamoService;
-<<<<<<< HEAD
-    private final EjemplarRepository ejemplarRepository;
-    private final UsuarioRepository usuarioRepository;
-
-    public PrestamoController(final PrestamoService prestamoService,
-            final EjemplarRepository ejemplarRepository,
-            final UsuarioRepository usuarioRepository) {
-        this.prestamoService = prestamoService;
-        this.ejemplarRepository = ejemplarRepository;
-        this.usuarioRepository = usuarioRepository;
-=======
     private final PrestamoRepository prestamoRepository;
     private final EjemplarRepository ejemplarRepository;
     private final UsuarioRepository usuarioRepository;
@@ -91,19 +62,10 @@ public class PrestamoController {
         this.usuarioRepository = usuarioRepository;
         this.socioRepository = socioRepository;
         this.socioService = socioService;
->>>>>>> Joaquin-System
     }
 
     @ModelAttribute
     public void prepareContext(final Model model) {
-<<<<<<< HEAD
-        model.addAttribute("ejemplarValues", ejemplarRepository.findAll(Sort.by("idEjemplar"))
-                .stream()
-                .collect(CustomCollectors.toSortedMap(Ejemplar::getIdEjemplar, Ejemplar::getIdEjemplar)));
-        model.addAttribute("empleValues", usuarioRepository.findAll(Sort.by("idUser"))
-                .stream()
-                .collect(CustomCollectors.toSortedMap(Usuario::getIdUser, Usuario::getNombre)));
-=======
         List<Usuario> allUsuarios = usuarioRepository.findAll(Sort.by("idUser"));
 
         List<Usuario> usuariosConRolId3 = allUsuarios.stream()
@@ -143,38 +105,23 @@ public class PrestamoController {
                 .filter(tipo -> tipo.equals(ETipos.LIBRO) || tipo.equals(ETipos.REVISTA))
                 .map(Enum::toString)
                 .collect(Collectors.toList()));
->>>>>>> Joaquin-System
     }
 
     @GetMapping
     public String list(final Model model) {
         model.addAttribute("prestamoes", prestamoService.findAll());
-<<<<<<< HEAD
-        return "prestamo/list";
-    }
-
-    @GetMapping("/add")
-    public String add(@ModelAttribute("prestamo") final PrestamoDTO prestamoDTO) {
-=======
         return "menuEmpleado/menuEmpleado";
     }
 
     @GetMapping("/add")
     public String add(@ModelAttribute("prestamo") final PrestamoDTO prestamoDTO,Model model) {
->>>>>>> Joaquin-System
         return "prestamo/add";
     }
 
     @PostMapping("/add")
     public String add(@ModelAttribute("prestamo") @Valid final PrestamoDTO prestamoDTO,
-<<<<<<< HEAD
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) {
-            return "prestamo/add";
-        }
-=======
                       final BindingResult bindingResult, final RedirectAttributes redirectAttributes,
-                      Model model) throws NotFoundEjemplar, NotFoundSocio, NotFoundEmpleado, ExceptionNoFoundPrestamo {
+                      Model model) {
 
 
         if (bindingResult.hasErrors()) {
@@ -183,26 +130,22 @@ public class PrestamoController {
 
 
         if (prestamoDTO.getEjemplar() == null || prestamoDTO.getEjemplar().toString().isEmpty()) {
-            System.out.println(new EmptyParametrer("Ejemplar").getMessage());
             model.addAttribute("errorFor", "vacioEjemplar");
             return "prestamo/add";
         }
 
 
         if (prestamoDTO.getTipo() == null) {
-            System.out.println(new EmptyParametrer("Tipo").getMessage());
             model.addAttribute("errorFor", "vacioTipo");
             return "prestamo/add";
         }
 
         if (prestamoDTO.getEmple() == null || prestamoDTO.getEmple().toString().isEmpty()) {
-            System.out.println(new EmptyParametrer("Empleado").getMessage());
             model.addAttribute("errorFor", "vacioEmpleado");
             return "prestamo/add";
         }
 
         if (prestamoDTO.getSocio() == null) {
-            System.out.println(new EmptyParametrer("Socio").getMessage());
             model.addAttribute("errorFor", "vacioSocio");
             return "prestamo/add";
         }
@@ -213,38 +156,23 @@ public class PrestamoController {
         prestamoDTO.setFechaFin(fechaActual.plusDays(30));
         prestamoDTO.setEntregado(false);
 
->>>>>>> Joaquin-System
         prestamoService.create(prestamoDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("prestamo.create.success"));
         return "redirect:/prestamos";
     }
 
-<<<<<<< HEAD
-    @GetMapping("/edit/{idPrestamo}")
-    public String edit(@PathVariable(name = "idPrestamo") final Integer idPrestamo,
-            final Model model) {
-=======
 
     @GetMapping("/edit/{idPrestamo}")
     public String edit(@PathVariable(name = "idPrestamo") final Integer idPrestamo,
                        final Model model) throws ExceptionNoFoundPrestamo {
->>>>>>> Joaquin-System
         model.addAttribute("prestamo", prestamoService.get(idPrestamo));
         return "prestamo/edit";
     }
 
     @PostMapping("/edit/{idPrestamo}")
     public String edit(@PathVariable(name = "idPrestamo") final Integer idPrestamo,
-<<<<<<< HEAD
-            @ModelAttribute("prestamo") @Valid final PrestamoDTO prestamoDTO,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) {
-            return "prestamo/edit";
-        }
-        prestamoService.update(idPrestamo, prestamoDTO);
-=======
                        @ModelAttribute("prestamo") @Valid final PrestamoDTO prestamoDTO,
-                       final BindingResult bindingResult, final RedirectAttributes redirectAttributes) throws ExceptionNoFoundPrestamo, NotFoundEjemplar, NotFoundSocio, NotFoundEmpleado {
+                       final BindingResult bindingResult, final RedirectAttributes redirectAttributes) throws ExceptionNoFoundPrestamo {
         if (bindingResult.hasErrors()) {
             return "prestamo/edit";
         }
@@ -261,26 +189,10 @@ public class PrestamoController {
         prestamoDTO2.setEntregado(true);
         prestamoService.update(idPrestamo, prestamoDTO2);
 
->>>>>>> Joaquin-System
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("prestamo.update.success"));
         return "redirect:/prestamos";
     }
 
-<<<<<<< HEAD
-    @PostMapping("/delete/{idPrestamo}")
-    public String delete(@PathVariable(name = "idPrestamo") final Integer idPrestamo,
-            final RedirectAttributes redirectAttributes) {
-        final String referencedWarning = prestamoService.getReferencedWarning(idPrestamo);
-        if (referencedWarning != null) {
-            redirectAttributes.addFlashAttribute(WebUtils.MSG_ERROR, referencedWarning);
-        } else {
-            prestamoService.delete(idPrestamo);
-            redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("prestamo.delete.success"));
-        }
-        return "redirect:/prestamos";
-    }
-
-=======
 
     @PostMapping("/buscar")
     public String buscarPorId(@RequestParam(required = false) final Integer id ,
@@ -345,5 +257,4 @@ public class PrestamoController {
         return prestamos.stream().anyMatch(prestamo -> !prestamo.getEntregado());
     }
 
->>>>>>> Joaquin-System
 }

@@ -1,11 +1,5 @@
 package io.bootify.libreri.ejemplar.controller;
 
-<<<<<<< HEAD
-import io.bootify.libreri.ejemplar.model.EjemplarDTO;
-import io.bootify.libreri.ejemplar.service.EjemplarService;
-import io.bootify.libreri.libros.domain.Libros;
-import io.bootify.libreri.libros.repos.LibrosRepository;
-=======
 import io.bootify.libreri.ejemplar.domain.Ejemplar;
 import io.bootify.libreri.ejemplar.model.EjemplarDTO;
 import io.bootify.libreri.ejemplar.repos.EjemplarRepository;
@@ -13,7 +7,6 @@ import io.bootify.libreri.ejemplar.service.EjemplarService;
 import io.bootify.libreri.libros.domain.Libros;
 import io.bootify.libreri.libros.repos.LibrosRepository;
 import io.bootify.libreri.prestamo.domain.Prestamo;
->>>>>>> Joaquin-System
 import io.bootify.libreri.revista.domain.Revista;
 import io.bootify.libreri.revista.repos.RevistaRepository;
 import io.bootify.libreri.util.CustomCollectors;
@@ -21,10 +14,7 @@ import io.bootify.libreri.util.WebUtils;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
-=======
 import org.springframework.transaction.annotation.Transactional;
->>>>>>> Joaquin-System
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,14 +24,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
->>>>>>> Joaquin-System
 
 @Controller
 @RequestMapping("/ejemplars")
@@ -50,22 +37,6 @@ public class EjemplarController {
     private final EjemplarService ejemplarService;
     private final LibrosRepository librosRepository;
     private final RevistaRepository revistaRepository;
-<<<<<<< HEAD
-
-    public EjemplarController(final EjemplarService ejemplarService,
-            final LibrosRepository librosRepository, final RevistaRepository revistaRepository) {
-        this.ejemplarService = ejemplarService;
-        this.librosRepository = librosRepository;
-        this.revistaRepository = revistaRepository;
-    }
-
-    @ModelAttribute
-    public void prepareContext(final Model model) {
-        model.addAttribute("libroValues", librosRepository.findAll(Sort.by("isbn"))
-                .stream()
-                .collect(CustomCollectors.toSortedMap(Libros::getIsbn, Libros::getTitulo)));
-        model.addAttribute("revistaValues", revistaRepository.findAll(Sort.by("idRevista"))
-=======
     private final EjemplarRepository ejemplarRepository;
 
     public EjemplarController(final EjemplarService ejemplarService,
@@ -107,23 +78,15 @@ public class EjemplarController {
                 .collect(CustomCollectors.toSortedMap(Libros::getIsbn, Libros::getTitulo)));
 
         model.addAttribute("revistaValues", revistasDisponibles
->>>>>>> Joaquin-System
                 .stream()
                 .collect(CustomCollectors.toSortedMap(Revista::getIdRevista, Revista::getTitulo)));
     }
 
-<<<<<<< HEAD
-    @GetMapping
-    public String list(final Model model) {
-        model.addAttribute("ejemplars", ejemplarService.findAll());
-        return "ejemplar/list";
-=======
 
     @GetMapping
     public String list(final Model model) {
         model.addAttribute("ejemplars", ejemplarService.findAll());
         return "menuEmpleado/menuEmpleado";
->>>>>>> Joaquin-System
     }
 
     @GetMapping("/add")
@@ -133,14 +96,8 @@ public class EjemplarController {
 
     @PostMapping("/add")
     public String add(@ModelAttribute("ejemplar") @Valid final EjemplarDTO ejemplarDTO,
-<<<<<<< HEAD
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) {
-            return "ejemplar/add";
-        }
-=======
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes,
-    Model model) {
+                      final BindingResult bindingResult, final RedirectAttributes redirectAttributes,
+                      Model model) {
         if (bindingResult.hasErrors()) {
             return "ejemplar/add";
         }
@@ -154,7 +111,6 @@ public class EjemplarController {
             model.addAttribute("error","nullos");
             return "ejemplar/add";
         }
->>>>>>> Joaquin-System
         ejemplarService.create(ejemplarDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("ejemplar.create.success"));
         return "redirect:/ejemplars";
@@ -162,22 +118,16 @@ public class EjemplarController {
 
     @GetMapping("/edit/{idEjemplar}")
     public String edit(@PathVariable(name = "idEjemplar") final Integer idEjemplar,
-            final Model model) {
+                       final Model model) {
         model.addAttribute("ejemplar", ejemplarService.get(idEjemplar));
         return "ejemplar/edit";
     }
 
     @PostMapping("/edit/{idEjemplar}")
     public String edit(@PathVariable(name = "idEjemplar") final Integer idEjemplar,
-            @ModelAttribute("ejemplar") @Valid final EjemplarDTO ejemplarDTO,
-<<<<<<< HEAD
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) {
-            return "ejemplar/edit";
-        }
-=======
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes,
-            Model model){
+                       @ModelAttribute("ejemplar") @Valid final EjemplarDTO ejemplarDTO,
+                       final BindingResult bindingResult, final RedirectAttributes redirectAttributes,
+                       Model model){
         if (bindingResult.hasErrors()) {
             return "ejemplar/edit";
         }
@@ -192,7 +142,6 @@ public class EjemplarController {
             return "ejemplar/edit";
         }
 
->>>>>>> Joaquin-System
         ejemplarService.update(idEjemplar, ejemplarDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("ejemplar.update.success"));
         return "redirect:/ejemplars";
@@ -200,7 +149,7 @@ public class EjemplarController {
 
     @PostMapping("/delete/{idEjemplar}")
     public String delete(@PathVariable(name = "idEjemplar") final Integer idEjemplar,
-            final RedirectAttributes redirectAttributes) {
+                         final RedirectAttributes redirectAttributes) {
         final String referencedWarning = ejemplarService.getReferencedWarning(idEjemplar);
         if (referencedWarning != null) {
             redirectAttributes.addFlashAttribute(WebUtils.MSG_ERROR, referencedWarning);

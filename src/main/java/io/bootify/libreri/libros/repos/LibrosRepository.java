@@ -12,10 +12,9 @@ public interface LibrosRepository extends JpaRepository<Libros, Integer> {
 
     List<Libros> findAllByLibroAutorAutors(Autor autor);
 
-<<<<<<< HEAD
-=======
+
 
     //List<libros> findByLibro(String title);
 
->>>>>>> Joaquin-System
+
 }

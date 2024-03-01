@@ -4,10 +4,7 @@ import io.bootify.libreri.ejemplar.domain.Ejemplar;
 import io.bootify.libreri.ejemplar.repos.EjemplarRepository;
 import io.bootify.libreri.revista.model.RevistaDTO;
 import io.bootify.libreri.revista.service.RevistaService;
-<<<<<<< HEAD
-=======
 import io.bootify.libreri.socio.domain.Socio;
->>>>>>> Joaquin-System
 import io.bootify.libreri.util.CustomCollectors;
 import io.bootify.libreri.util.WebUtils;
 import jakarta.validation.Valid;
@@ -31,7 +28,7 @@ public class RevistaController {
     private final EjemplarRepository ejemplarRepository;
 
     public RevistaController(final RevistaService revistaService,
-            final EjemplarRepository ejemplarRepository) {
+                             final EjemplarRepository ejemplarRepository) {
         this.revistaService = revistaService;
         this.ejemplarRepository = ejemplarRepository;
     }
@@ -46,15 +43,11 @@ public class RevistaController {
     @GetMapping
     public String list(final Model model) {
         model.addAttribute("revistas", revistaService.findAll());
-<<<<<<< HEAD
-        return "revista/list";
-=======
         System.out.println("Entra en list");
         for(RevistaDTO r:revistaService.findAll()){
             System.out.println(r.toString());
         }
         return "menuEmpleado/menuEmpleado";
->>>>>>> Joaquin-System
     }
 
     @GetMapping("/add")
@@ -64,7 +57,7 @@ public class RevistaController {
 
     @PostMapping("/add")
     public String add(@ModelAttribute("revista") @Valid final RevistaDTO revistaDTO,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+                      final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "revista/add";
         }
@@ -75,15 +68,15 @@ public class RevistaController {
 
     @GetMapping("/edit/{idRevista}")
     public String edit(@PathVariable(name = "idRevista") final Integer idRevista,
-            final Model model) {
+                       final Model model) {
         model.addAttribute("revista", revistaService.get(idRevista));
         return "revista/edit";
     }
 
     @PostMapping("/edit/{idRevista}")
     public String edit(@PathVariable(name = "idRevista") final Integer idRevista,
-            @ModelAttribute("revista") @Valid final RevistaDTO revistaDTO,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+                       @ModelAttribute("revista") @Valid final RevistaDTO revistaDTO,
+                       final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "revista/edit";
         }
@@ -94,7 +87,7 @@ public class RevistaController {
 
     @PostMapping("/delete/{idRevista}")
     public String delete(@PathVariable(name = "idRevista") final Integer idRevista,
-            final RedirectAttributes redirectAttributes) {
+                         final RedirectAttributes redirectAttributes) {
         final String referencedWarning = revistaService.getReferencedWarning(idRevista);
         if (referencedWarning != null) {
             redirectAttributes.addFlashAttribute(WebUtils.MSG_ERROR, referencedWarning);

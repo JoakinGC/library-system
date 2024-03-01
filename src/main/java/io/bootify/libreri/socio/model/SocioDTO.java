@@ -23,13 +23,7 @@ public class SocioDTO {
 
     private Integer multa;
 
-<<<<<<< HEAD
-    private Integer multaTotal;
-
-    private Integer prestamo;
-=======
     private Boolean activo;
->>>>>>> Joaquin-System
 
     public Integer getIdSocio() {
         return idSocio;
@@ -87,24 +81,6 @@ public class SocioDTO {
         this.multa = multa;
     }
 
-<<<<<<< HEAD
-    public Integer getMultaTotal() {
-        return multaTotal;
-    }
-
-    public void setMultaTotal(final Integer multaTotal) {
-        this.multaTotal = multaTotal;
-    }
-
-    public Integer getPrestamo() {
-        return prestamo;
-    }
-
-    public void setPrestamo(final Integer prestamo) {
-        this.prestamo = prestamo;
-    }
-
-=======
     public Boolean getActivo() {
         return activo;
     }
@@ -112,5 +88,4 @@ public class SocioDTO {
     public void setActivo(Boolean activo) {
         this.activo = activo;
     }
->>>>>>> Joaquin-System
 }

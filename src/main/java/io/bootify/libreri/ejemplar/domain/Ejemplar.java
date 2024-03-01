@@ -37,11 +37,6 @@ public class Ejemplar {
     @JoinColumn(name = "revista_id")
     private Revista revista;
 
-<<<<<<< HEAD
-    @OneToMany(mappedBy = "ejemplar")
-    private Set<Revista> ejemplarRevistas;
-=======
->>>>>>> Joaquin-System
 
     @OneToMany(mappedBy = "ejemplar")
     private Set<Prestamo> ejemplarPrestamoes;
@@ -78,17 +73,6 @@ public class Ejemplar {
         this.revista = revista;
     }
 
-<<<<<<< HEAD
-    public Set<Revista> getEjemplarRevistas() {
-        return ejemplarRevistas;
-    }
-
-    public void setEjemplarRevistas(final Set<Revista> ejemplarRevistas) {
-        this.ejemplarRevistas = ejemplarRevistas;
-    }
-
-=======
->>>>>>> Joaquin-System
     public Set<Prestamo> getEjemplarPrestamoes() {
         return ejemplarPrestamoes;
     }

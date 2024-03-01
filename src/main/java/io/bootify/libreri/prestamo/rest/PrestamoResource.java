@@ -1,12 +1,6 @@
 package io.bootify.libreri.prestamo.rest;
 
-<<<<<<< HEAD
-=======
 import io.bootify.libreri.errors.ExceptionNoFoundPrestamo;
-import io.bootify.libreri.errors.NotFoundEjemplar;
-import io.bootify.libreri.errors.NotFoundEmpleado;
-import io.bootify.libreri.errors.NotFoundSocio;
->>>>>>> Joaquin-System
 import io.bootify.libreri.prestamo.model.PrestamoDTO;
 import io.bootify.libreri.prestamo.service.PrestamoService;
 import jakarta.validation.Valid;
@@ -41,21 +35,13 @@ public class PrestamoResource {
 
     @GetMapping("/{idPrestamo}")
     public ResponseEntity<PrestamoDTO> getPrestamo(
-<<<<<<< HEAD
-            @PathVariable(name = "idPrestamo") final Integer idPrestamo) {
-=======
             @PathVariable(name = "idPrestamo") final Integer idPrestamo) throws ExceptionNoFoundPrestamo {
->>>>>>> Joaquin-System
         return ResponseEntity.ok(prestamoService.get(idPrestamo));
     }
 
     @PostMapping
     public ResponseEntity<Integer> createPrestamo(
-<<<<<<< HEAD
             @RequestBody @Valid final PrestamoDTO prestamoDTO) {
-=======
-            @RequestBody @Valid final PrestamoDTO prestamoDTO) throws NotFoundEjemplar, NotFoundSocio, NotFoundEmpleado, ExceptionNoFoundPrestamo {
->>>>>>> Joaquin-System
         final Integer createdIdPrestamo = prestamoService.create(prestamoDTO);
         return new ResponseEntity<>(createdIdPrestamo, HttpStatus.CREATED);
     }
@@ -63,11 +49,7 @@ public class PrestamoResource {
     @PutMapping("/{idPrestamo}")
     public ResponseEntity<Integer> updatePrestamo(
             @PathVariable(name = "idPrestamo") final Integer idPrestamo,
-<<<<<<< HEAD
             @RequestBody @Valid final PrestamoDTO prestamoDTO) {
-=======
-            @RequestBody @Valid final PrestamoDTO prestamoDTO) throws NotFoundEjemplar, NotFoundSocio, NotFoundEmpleado, ExceptionNoFoundPrestamo {
->>>>>>> Joaquin-System
         prestamoService.update(idPrestamo, prestamoDTO);
         return ResponseEntity.ok(idPrestamo);
     }

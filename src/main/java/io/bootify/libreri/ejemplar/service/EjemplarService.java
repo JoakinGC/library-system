@@ -9,16 +9,10 @@ import io.bootify.libreri.prestamo.domain.Prestamo;
 import io.bootify.libreri.prestamo.repos.PrestamoRepository;
 import io.bootify.libreri.revista.domain.Revista;
 import io.bootify.libreri.revista.repos.RevistaRepository;
-<<<<<<< HEAD
-import io.bootify.libreri.util.NotFoundException;
-import io.bootify.libreri.util.WebUtils;
-import java.util.List;
-=======
 import io.bootify.libreri.errors.NotFoundException;
 import io.bootify.libreri.util.WebUtils;
 import java.util.List;
 
->>>>>>> Joaquin-System
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +26,8 @@ public class EjemplarService {
     private final PrestamoRepository prestamoRepository;
 
     public EjemplarService(final EjemplarRepository ejemplarRepository,
-            final LibrosRepository librosRepository, final RevistaRepository revistaRepository,
-            final PrestamoRepository prestamoRepository) {
+                           final LibrosRepository librosRepository, final RevistaRepository revistaRepository,
+                           final PrestamoRepository prestamoRepository) {
         this.ejemplarRepository = ejemplarRepository;
         this.librosRepository = librosRepository;
         this.revistaRepository = revistaRepository;
@@ -70,8 +64,6 @@ public class EjemplarService {
         ejemplarRepository.deleteById(idEjemplar);
     }
 
-<<<<<<< HEAD
-=======
     public List<Libros> findAllLibrosWithEjemplar() {
         return ejemplarRepository.findAllLibrosWithEjemplar();
     }
@@ -80,7 +72,6 @@ public class EjemplarService {
         return ejemplarRepository.findAllRevistasWithEjemplar();
     }
 
->>>>>>> Joaquin-System
     private EjemplarDTO mapToDTO(final Ejemplar ejemplar, final EjemplarDTO ejemplarDTO) {
         ejemplarDTO.setIdEjemplar(ejemplar.getIdEjemplar());
         ejemplarDTO.setLibro(ejemplar.getLibro() == null ? null : ejemplar.getLibro().getIsbn());
@@ -101,14 +92,7 @@ public class EjemplarService {
     public String getReferencedWarning(final Integer idEjemplar) {
         final Ejemplar ejemplar = ejemplarRepository.findById(idEjemplar)
                 .orElseThrow(NotFoundException::new);
-<<<<<<< HEAD
-        final Revista ejemplarRevista = revistaRepository.findFirstByEjemplar(ejemplar);
-        if (ejemplarRevista != null) {
-            return WebUtils.getMessage("ejemplar.revista.ejemplar.referenced", ejemplarRevista.getIdRevista());
-        }
-=======
 
->>>>>>> Joaquin-System
         final Prestamo ejemplarPrestamo = prestamoRepository.findFirstByEjemplar(ejemplar);
         if (ejemplarPrestamo != null) {
             return WebUtils.getMessage("ejemplar.prestamo.ejemplar.referenced", ejemplarPrestamo.getIdPrestamo());

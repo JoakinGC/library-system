@@ -31,11 +31,8 @@ public class FichadoController {
         return "fichado/list";
     }
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> Joaquin-System
     @GetMapping("/add")
     public String add(@ModelAttribute("fichado") final FichadoDTO fichadoDTO) {
         return "fichado/add";
@@ -43,11 +40,7 @@ public class FichadoController {
 
     @PostMapping("/add")
     public String add(@ModelAttribute("fichado") @Valid final FichadoDTO fichadoDTO,
-<<<<<<< HEAD
                       final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-=======
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
->>>>>>> Joaquin-System
         if (bindingResult.hasErrors()) {
             return "fichado/add";
         }
@@ -58,24 +51,15 @@ public class FichadoController {
 
     @GetMapping("/edit/{idFichado}")
     public String edit(@PathVariable(name = "idFichado") final Integer idFichado,
-<<<<<<< HEAD
-                       final Model model) {
-=======
             final Model model) {
->>>>>>> Joaquin-System
         model.addAttribute("fichado", fichadoService.get(idFichado));
         return "fichado/edit";
     }
 
     @PostMapping("/edit/{idFichado}")
     public String edit(@PathVariable(name = "idFichado") final Integer idFichado,
-<<<<<<< HEAD
-                       @ModelAttribute("fichado") @Valid final FichadoDTO fichadoDTO,
-                       final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-=======
             @ModelAttribute("fichado") @Valid final FichadoDTO fichadoDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
->>>>>>> Joaquin-System
         if (bindingResult.hasErrors()) {
             return "fichado/edit";
         }
@@ -86,11 +70,8 @@ public class FichadoController {
 
     @PostMapping("/delete/{idFichado}")
     public String delete(@PathVariable(name = "idFichado") final Integer idFichado,
-<<<<<<< HEAD
                          final RedirectAttributes redirectAttributes) {
-=======
-            final RedirectAttributes redirectAttributes) {
->>>>>>> Joaquin-System
+
         final String referencedWarning = fichadoService.getReferencedWarning(idFichado);
         if (referencedWarning != null) {
             redirectAttributes.addFlashAttribute(WebUtils.MSG_ERROR, referencedWarning);
@@ -101,9 +82,6 @@ public class FichadoController {
         return "redirect:/fichados";
     }
 
-<<<<<<< HEAD
-}
-=======
 
     @GetMapping("/closeSession/{idUser}")
     public String closeSession(Model model,
@@ -118,4 +96,3 @@ public class FichadoController {
         return  "/";
     }
 }
->>>>>>> Joaquin-System

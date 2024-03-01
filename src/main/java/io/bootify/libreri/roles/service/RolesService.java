@@ -5,11 +5,7 @@ import io.bootify.libreri.roles.model.RolesDTO;
 import io.bootify.libreri.roles.repos.RolesRepository;
 import io.bootify.libreri.usuario.domain.Usuario;
 import io.bootify.libreri.usuario.repos.UsuarioRepository;
-<<<<<<< HEAD
-import io.bootify.libreri.util.NotFoundException;
-=======
 import io.bootify.libreri.errors.NotFoundException;
->>>>>>> Joaquin-System
 import io.bootify.libreri.util.WebUtils;
 import java.util.List;
 import org.springframework.data.domain.Sort;
@@ -23,7 +19,7 @@ public class RolesService {
     private final UsuarioRepository usuarioRepository;
 
     public RolesService(final RolesRepository rolesRepository,
-            final UsuarioRepository usuarioRepository) {
+                        final UsuarioRepository usuarioRepository) {
         this.rolesRepository = rolesRepository;
         this.usuarioRepository = usuarioRepository;
     }

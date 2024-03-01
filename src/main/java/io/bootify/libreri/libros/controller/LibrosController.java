@@ -2,14 +2,11 @@ package io.bootify.libreri.libros.controller;
 
 import io.bootify.libreri.autor.domain.Autor;
 import io.bootify.libreri.autor.repos.AutorRepository;
-<<<<<<< HEAD
-=======
 import io.bootify.libreri.editorial.domain.Editorial;
 import io.bootify.libreri.editorial.repos.EditorialRepository;
 import io.bootify.libreri.editorial.service.EditorialService;
 import io.bootify.libreri.genero.domain.Genero;
 import io.bootify.libreri.genero.repos.GeneroRepository;
->>>>>>> Joaquin-System
 import io.bootify.libreri.libros.model.LibrosDTO;
 import io.bootify.libreri.libros.service.LibrosService;
 import io.bootify.libreri.util.CustomCollectors;
@@ -28,29 +25,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-<<<<<<< HEAD
-@RequestMapping("/libross")
-=======
 @RequestMapping("/libros")
->>>>>>> Joaquin-System
 public class LibrosController {
 
     private final LibrosService librosService;
     private final AutorRepository autorRepository;
 
-<<<<<<< HEAD
-    public LibrosController(final LibrosService librosService,
-            final AutorRepository autorRepository) {
-        this.librosService = librosService;
-        this.autorRepository = autorRepository;
-=======
 
     public LibrosController(final LibrosService librosService,
                             final AutorRepository autorRepository) {
         this.librosService = librosService;
         this.autorRepository = autorRepository;
 
->>>>>>> Joaquin-System
     }
 
     @ModelAttribute
@@ -58,23 +44,16 @@ public class LibrosController {
         model.addAttribute("libroAutorAutorsValues", autorRepository.findAll(Sort.by("idAutor"))
                 .stream()
                 .collect(CustomCollectors.toSortedMap(Autor::getIdAutor, Autor::getNombre)));
-<<<<<<< HEAD
-=======
 
->>>>>>> Joaquin-System
     }
 
     @GetMapping
     public String list(final Model model) {
         model.addAttribute("libroses", librosService.findAll());
-<<<<<<< HEAD
-        return "libros/list";
-=======
         for(LibrosDTO l:librosService.findAll()){
             System.out.println(l.toString());
         }
         return "menuEmpleado/menuEmpleado";
->>>>>>> Joaquin-System
     }
 
     @GetMapping("/add")
@@ -84,17 +63,13 @@ public class LibrosController {
 
     @PostMapping("/add")
     public String add(@ModelAttribute("libros") @Valid final LibrosDTO librosDTO,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+                      final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "libros/add";
         }
         librosService.create(librosDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("libros.create.success"));
-<<<<<<< HEAD
-        return "redirect:/libross";
-=======
         return "redirect:/libros";
->>>>>>> Joaquin-System
     }
 
     @GetMapping("/edit/{isbn}")
@@ -105,23 +80,19 @@ public class LibrosController {
 
     @PostMapping("/edit/{isbn}")
     public String edit(@PathVariable(name = "isbn") final Integer isbn,
-            @ModelAttribute("libros") @Valid final LibrosDTO librosDTO,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+                       @ModelAttribute("libros") @Valid final LibrosDTO librosDTO,
+                       final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "libros/edit";
         }
         librosService.update(isbn, librosDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("libros.update.success"));
-<<<<<<< HEAD
-        return "redirect:/libross";
-=======
         return "redirect:/libros";
->>>>>>> Joaquin-System
     }
 
     @PostMapping("/delete/{isbn}")
     public String delete(@PathVariable(name = "isbn") final Integer isbn,
-            final RedirectAttributes redirectAttributes) {
+                         final RedirectAttributes redirectAttributes) {
         final String referencedWarning = librosService.getReferencedWarning(isbn);
         if (referencedWarning != null) {
             redirectAttributes.addFlashAttribute(WebUtils.MSG_ERROR, referencedWarning);
@@ -129,11 +100,7 @@ public class LibrosController {
             librosService.delete(isbn);
             redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("libros.delete.success"));
         }
-<<<<<<< HEAD
-        return "redirect:/libross";
-=======
         return "redirect:/libros";
->>>>>>> Joaquin-System
     }
 
 }
