@@ -5,6 +5,8 @@ import io.bootify.libreri.ejemplar.repos.EjemplarRepository;
 import io.bootify.libreri.errors.EmptyParametrer;
 import io.bootify.libreri.errors.ExceptionNoFoundPrestamo;
 import io.bootify.libreri.libros.domain.Libros;
+import io.bootify.libreri.libros.repos.LibrosRepository;
+import io.bootify.libreri.libros.service.LibrosService;
 import io.bootify.libreri.prestamo.domain.ETipos;
 import io.bootify.libreri.prestamo.domain.Prestamo;
 import io.bootify.libreri.prestamo.model.PrestamoDTO;
@@ -49,19 +51,21 @@ public class PrestamoController {
     private final UsuarioRepository usuarioRepository;
     private final SocioRepository socioRepository;
     private final SocioService socioService;
+    private final LibrosService librosService;
 
 
     public PrestamoController(final PrestamoService prestamoService, PrestamoRepository prestamoRepository,
                               final EjemplarRepository ejemplarRepository,
                               final UsuarioRepository usuarioRepository,
                               final SocioRepository socioRepository,
-                              final SocioService socioService) {
+                              final SocioService socioService, LibrosService librosService) {
         this.prestamoService = prestamoService;
         this.prestamoRepository = prestamoRepository;
         this.ejemplarRepository = ejemplarRepository;
         this.usuarioRepository = usuarioRepository;
         this.socioRepository = socioRepository;
         this.socioService = socioService;
+        this.librosService = librosService;
     }
 
     @ModelAttribute
@@ -179,8 +183,7 @@ public class PrestamoController {
 
         PrestamoDTO prestamoDTO2 = prestamoService.get(idPrestamo);
 
-        prestamoDTO2.setFechaEntrega(OffsetDateTime.now().plusDays(5));
-        prestamoDTO2.setFechaFin(OffsetDateTime.now());
+        prestamoDTO2.setFechaEntrega(OffsetDateTime.now());
 
         if(prestamoDTO2.getFechaEntrega().isAfter(prestamoDTO2.getFechaFin()) || prestamoDTO2.getFechaEntrega().isEqual(prestamoDTO2.getFechaFin())) {
             System.out.println("Solo si el socio no entrego el  prestamo en tiempo");
@@ -221,30 +224,32 @@ public class PrestamoController {
         return "prestamo/list";
     }
 
-    @GetMapping("/buscarLibro")
-    public String buscarPorNombreLibro(@RequestParam(name = "nombreLibro") final String nombreLibro, final Model model) {
-        List<Prestamo> prestamosEncontrados = prestamoRepository.findByNombreLibro(nombreLibro);
 
-        if (!prestamosEncontrados.isEmpty()) {
-            model.addAttribute("prestamosLibro", prestamosEncontrados);
-        } else {
-            model.addAttribute("mensaje", "No se encontró ningún préstamo con el nombre de libro proporcionado.");
+
+    @PostMapping("/buscarISBN")
+    public String buscarPorISBN(@RequestParam(required = false) final Integer isbn, final Model model) throws ExceptionNoFoundPrestamo {
+
+        if(isbn == null || isbn.toString().isEmpty()){
+            System.out.println(new EmptyParametrer("ID").getMessage());
+            return "redirect:/prestamos";
         }
 
-        return "redirect:/prestamos";
-    }
+        Prestamo prestamo = prestamoRepository.findByIsbnLibro(isbn) == null ?null: prestamoRepository.findByIsbnLibro(isbn) ;
+        PrestamoDTO p = (prestamoService.get(prestamo.getIdPrestamo()) != null) ? prestamoService.get(prestamo.getIdPrestamo()): null;
 
-    @GetMapping("/buscarISBN")
-    public String buscarPorISBN(@RequestParam(name = "isbn") final String isbn, final Model model) {
-        Prestamo prestamo = prestamoRepository.findByIsbnLibro(isbn);
+        if (p != null || prestamo != null) {
+            model.addAttribute("prestamoEncontrado", p);
 
-        if (prestamo != null) {
-            model.addAttribute("prestamoEncontrado", prestamo);
+            if(prestamo.getFechaEntrega() != null){
+                model.addAttribute("entregado","");
+            }else if(prestamo.getFechaEntrega() == null){
+                model.addAttribute("noEntregado","");
+            }
         } else {
             model.addAttribute("mensaje", "No se encontró ningún préstamo con el ISBN de libro proporcionado.");
         }
 
-        return "redirect:/prestamos";
+        return "prestamo/list";
     }
 
     private boolean estaEnPrestamo(Ejemplar ejemplar) {

@@ -86,7 +86,25 @@
             <artifactId>junit</artifactId>
         </dependency>
 
+        <!--Consumo de APIS-->
 
+        <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+
+
+
+
+
+
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity6</artifactId>
+
+        </dependency>
     </dependencies>
 
     <build>
@@ -132,6 +150,25 @@
                 </executions>
                 <configuration>
                     <nodeVersion>v20.11.0</nodeVersion>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-javadoc</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>javadoc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <show>protected</show>
+                    <show>package</show>
+                    <show>private</show>
                 </configuration>
             </plugin>
         </plugins>

@@ -96,6 +96,11 @@
                     <input type="number" name="id" th:value="${id}">
                     <button type="submit">Buscar</button>
                 </form>
+                <form th:action="@{/prestamos/buscarISBN}"  method="post">
+                    <label>Buscar por ISBN de libro</label>
+                    <input type="number" name="isbn" th:value="${isbn}">
+                    <button type="submit">Buscar</button>
+                </form>
 
                 <div>
                     <a th:href="@{/prestamos/add}" class="btn btn-primary ms-2">[[#{prestamo.list.createNew}]]</a>

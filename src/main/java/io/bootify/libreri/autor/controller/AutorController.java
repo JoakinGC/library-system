@@ -15,9 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
+
+/**
+ * Controlador para manejar las operaciones CRUD relacionadas con autores en la aplicación.
+ */
+
 @Controller
 @RequestMapping("/autors")
 public class AutorController {
+
+
+
 
     private final AutorService autorService;
 
@@ -25,16 +33,47 @@ public class AutorController {
         this.autorService = autorService;
     }
 
+
+    /*
+Métodos
+1. Método list
+Descripción: Obtiene la lista de todos los autores y la agrega al modelo para su visualización en la vista.
+Tipo de Solicitud HTTP: GET
+Ruta: /autors
+    * @param model Objeto Model de Spring utilizado para agregar atributos que se utilizarán en la vista.
+     * @return Nombre de la vista para mostrar la lista de autores (`autor/list`).
+     */
     @GetMapping
     public String list(final Model model) {
         model.addAttribute("autors", autorService.findAll());
         return "autor/list";
     }
 
+
+    /*
+    2. Método add
+    Descripción: Presenta el formulario para agregar un nuevo autor.
+    Tipo de Solicitud HTTP: GET
+    Ruta: /autors/add
+    Parámetros:
+    @param @ModelAttribute("autor") AutorDTO autorDTO:
+     @param Objeto AutorDTO inicializado y vinculado al formulario.
+            @return Nombre de la vista para mostrar el formulario de agregar autor (autor/add).*/
+
     @GetMapping("/add")
     public String add(@ModelAttribute("autor") final AutorDTO autorDTO) {
         return "autor/add";
     }
+
+     /*Método add (Sobrecargado)
+Descripción: Procesa el formulario de agregar autor y crea un nuevo autor si la validación es exitosa.
+Tipo de Solicitud HTTP: POST
+Ruta: /autors/add
+Parámetros:
+@ModelAttribute("autor") @Valid AutorDTO autorDTO: Objeto AutorDTO validado desde el formulario.
+BindingResult bindingResult: Resultados de la validación.
+RedirectAttributes redirectAttributes: Atributos de redirección para mensajes flash.
+Retorno: Redirección a la lista de autores si la operación es exitosa; de lo contrario, muestra el formulario de agregar autor (autor/add).*/
 
     @PostMapping("/add")
     public String add(@ModelAttribute("autor") @Valid final AutorDTO autorDTO,

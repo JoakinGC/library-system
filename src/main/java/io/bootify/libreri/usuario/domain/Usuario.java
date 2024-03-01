@@ -16,15 +16,20 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.time.OffsetDateTime;
+import java.util.Collection;
 import java.util.Set;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Usuario {
+public class Usuario  {
 
     @Id
     @Column(nullable = false, updatable = false)
@@ -191,4 +196,15 @@ public class Usuario {
     }
 
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "idUser=" + idUser +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", diaAlta=" + diaAlta +
+                ", contresena='" + contresena + '\'' +
+                ", rol=" + rol.toString() +
+                '}';
+    }
 }

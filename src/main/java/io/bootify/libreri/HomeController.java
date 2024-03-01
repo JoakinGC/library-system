@@ -35,11 +35,12 @@ public class HomeController {
         this.fichadoService = fichoService;
     }
 
-
+    @PreAuthorize("hasRole('PUBLIC')")
     @GetMapping("/")
     public String index() {
         return "home/index";
     }
+
 
 
     @GetMapping("/menuSupervisor")
@@ -47,6 +48,8 @@ public class HomeController {
         return "menuSupervisor/menuSupervisor";
     }
 
+
+    @PreAuthorize("hasRole('PUBLIC')")
     @GetMapping("/cerrarSesion")
     public String cerrarSesion(HttpSession session){
         System.out.println(session.getAttribute("fichado"));
@@ -63,6 +66,7 @@ public class HomeController {
         return "home/index";
     }
 
+    @PreAuthorize("hasRole('PUBLIC')")
     @PostMapping("/prueba")
     public String processLogin(@RequestParam(required = false) String nombre, @RequestParam(required = false) String contresena, Model model, HttpSession session) {
         
