@@ -4,11 +4,17 @@ import io.bootify.libreri.fichado.domain.Fichado;
 import io.bootify.libreri.fichado.model.FichadoDTO;
 import io.bootify.libreri.fichado.repos.FichadoRepository;
 import io.bootify.libreri.usuario.domain.Usuario;
+import io.bootify.libreri.usuario.model.UsuarioDTO;
 import io.bootify.libreri.usuario.repos.UsuarioRepository;
 import io.bootify.libreri.errors.NotFoundException;
 import io.bootify.libreri.util.WebUtils;
 import jakarta.transaction.Transactional;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -68,6 +74,17 @@ public class FichadoService {
         fichadoDTO.setHoraEntrada(fichado.getHoraEntrada());
         fichadoDTO.setHoraSalida(fichado.getHoraSalida());
         fichadoDTO.setTiempoTotalDia(fichado.getTiempoTotalDia());
+        Set<UsuarioDTO> usuarioDTOs = (fichado.getFichadoUserUsuarios() != null) ?
+                fichado.getFichadoUserUsuarios()
+                .stream()
+                .map(usuario -> {
+                    UsuarioDTO usuarioDTO = new UsuarioDTO();
+                    // Mapear atributos relevantes de Usuario a UsuarioDTO
+                    usuarioDTO.setIdUser(usuario.getIdUser());
+                    // Otros mapeos según tus necesidades
+                    return usuarioDTO;
+                })
+                .collect(Collectors.toSet()): new HashSet<>();
         return fichadoDTO;
     }
 
@@ -76,6 +93,18 @@ public class FichadoService {
         fichado.setHoraEntrada(fichadoDTO.getHoraEntrada());
         fichado.setHoraSalida(fichadoDTO.getHoraSalida());
         fichado.setTiempoTotalDia(fichadoDTO.getTiempoTotalDia());
+
+        Set<Usuario> usuarios = (fichadoDTO.getFichadoUserUsuarios() !=null) ?
+                fichadoDTO.getFichadoUserUsuarios()
+                .stream()
+                .map(usuarioDTO -> {
+                    Usuario usuario = new Usuario();
+                    // Mapear atributos relevantes de UsuarioDTO a Usuario
+                    usuario.setIdUser(usuarioDTO.getIdUser());
+                    // Otros mapeos según tus necesidades
+                    return usuario;
+                })
+                .collect(Collectors.toSet()):new HashSet<>();
         return fichado;
     }
 

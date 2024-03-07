@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface PrestamoRepository extends JpaRepository<Prestamo, Integer> {
@@ -31,5 +32,5 @@ public interface PrestamoRepository extends JpaRepository<Prestamo, Integer> {
     List<Prestamo> findByNombreLibro(@Param("titulo") String titulo);
 
     @Query("SELECT p FROM Prestamo p WHERE p.ejemplar.libro.isbn = :isbn")
-    Prestamo findByIsbnLibro(@Param("isbn") Integer isbn);
+    Optional<Prestamo> findByIsbnLibro(@Param("isbn") Integer isbn);
 }

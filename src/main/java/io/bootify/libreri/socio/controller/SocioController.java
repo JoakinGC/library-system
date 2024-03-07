@@ -81,7 +81,7 @@ public class SocioController {
             model.addAttribute("id",idSocio.toString());
         } else {
             SocioDTO s = socioService.get(idSocio);
-            s.setActivo(false);
+            s.setActivo(!s.getActivo());
             socioService.update(idSocio,s);
             redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("socio.delete.success"));
         }

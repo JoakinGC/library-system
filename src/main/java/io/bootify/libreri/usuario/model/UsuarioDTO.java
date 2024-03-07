@@ -3,9 +3,7 @@ package io.bootify.libreri.usuario.model;
 import io.bootify.libreri.roles.domain.ERoles;
 import jakarta.validation.constraints.Size;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -45,9 +43,15 @@ public class UsuarioDTO {
 
     private Integer idSuper;
 
-    private List<Integer> fichadoUserFichadoes;
+    private Set<Integer> fichadoUserFichadoes;
+
+
 
     private Integer rol;
+
+    public UsuarioDTO() {
+        this.fichadoUserFichadoes = new HashSet<>();
+    }
 
     public Integer getIdUser() {
         return idUser;
@@ -121,11 +125,11 @@ public class UsuarioDTO {
         this.idSuper = idSuper;
     }
 
-    public List<Integer> getFichadoUserFichadoes() {
+    public Set<Integer> getFichadoUserFichadoes() {
         return fichadoUserFichadoes;
     }
 
-    public void setFichadoUserFichadoes(final List<Integer> fichadoUserFichadoes) {
+    public void setFichadoUserFichadoes(final Set<Integer> fichadoUserFichadoes) {
         this.fichadoUserFichadoes = fichadoUserFichadoes;
     }
 
@@ -139,6 +143,14 @@ public class UsuarioDTO {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "UsuarioDTO{" +
+                "idUser=" + idUser +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", contresena='" + contresena + '\'' +
+                ", rol=" + rol.toString() +
+                '}';
+    }
 }

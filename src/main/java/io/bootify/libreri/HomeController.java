@@ -20,6 +20,7 @@ import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 @Controller
@@ -48,6 +49,11 @@ public class HomeController {
         return "menuSupervisor/menuSupervisor";
     }
 
+    @GetMapping("/menuEmpleado")
+    public String backMenuEmpleado(Model model){
+        model.addAttribute("main", "");
+        return "menuEmpleado/menuEmpleado";
+    }
 
     @PreAuthorize("hasRole('PUBLIC')")
     @GetMapping("/cerrarSesion")
@@ -101,18 +107,20 @@ public class HomeController {
                     fichado.setHoraEntrada(OffsetDateTime.now());
                     fichado.setFechaFichaje(OffsetDateTime.now());
                     Integer id = fichadoService.create(fichado);
-                    List<Integer> fichadoUserFichadoes = new ArrayList<>();
-                    fichadoUserFichadoes.add(id);
 
-                    usuarioDTO.setFichadoUserFichadoes(fichadoUserFichadoes);
+                    usuarioDTO.getFichadoUserFichadoes().add(id);
                     usuarioService.update(usuarioDTO.getIdUser(),usuarioDTO);
+
+                    if (usuarioDTO.getFichadoUserFichadoes() != null) {
+                        fichado.setFichadoUserUsuarios(Set.of(usuarioDTO));
+                    }
+                    fichadoService.update(id, fichado);
+
                     session.setAttribute("fichado", fichado);
                     session.setAttribute("id", id);
 
                     model.addAttribute("id",usuarioDTO.getIdUser());
                     model.addAttribute("idSuperivor",usuarioDTO.getIdSuper());
-                    usuarioDTO.setFichadoUserFichadoes(fichadoUserFichadoes);
-                    usuarioService.update(usuarioDTO.getIdUser(),usuarioDTO);
 
                     return "menuSupervisor/menuSupervisor";
                 } else if (usuarioDTO.getRol() == 3) {
@@ -120,15 +128,26 @@ public class HomeController {
                     fichado.setHoraEntrada(OffsetDateTime.now());
                     fichado.setFechaFichaje(OffsetDateTime.now());
                     Integer id = fichadoService.create(fichado);
-                    List<Integer> fichadoUserFichadoes = new ArrayList<>();
-                    fichadoUserFichadoes.add(id);
+
+
+                    usuarioDTO.getFichadoUserFichadoes().add(id);
+                    usuarioService.update(usuarioDTO.getIdUser(),usuarioDTO);
+
+                    if (usuarioDTO.getFichadoUserFichadoes() != null) {
+                        fichado.setFichadoUserUsuarios(Set.of(usuarioDTO));
+                    }
+                    fichadoService.update(id, fichado);
+
+
+                    session.setAttribute("fichado", fichado);
+                    session.setAttribute("id", id);
 
                     String aux = usuarioDTO.getIdUser().toString();
                     model.addAttribute("id", usuarioDTO.getNombre());
                     model.addAttribute("main", "");
 
-                    usuarioDTO.setFichadoUserFichadoes(fichadoUserFichadoes);
-                    usuarioService.update(usuarioDTO.getIdUser(),usuarioDTO);
+
+
                     return "menuEmpleado/menuEmpleado";
                 }else{
                     return null;
@@ -142,4 +161,9 @@ public class HomeController {
 
     }
 
+
+    @GetMapping("/documentation")
+    public String getDocumentation(){
+        return "/documentation/index";
+    }
 }

@@ -1,6 +1,10 @@
 package io.bootify.libreri.fichado.model;
 
 import java.time.OffsetDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
+import io.bootify.libreri.usuario.model.UsuarioDTO;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -18,6 +22,13 @@ public class FichadoDTO {
     private OffsetDateTime horaSalida;
 
     private Double tiempoTotalDia;
+
+    private Set<UsuarioDTO> fichadoUserUsuarios;
+
+    public FichadoDTO() {
+        this.fichadoUserUsuarios = new HashSet<>();
+    }
+
 
     public Integer getIdFichado() {
         return idFichado;
@@ -57,6 +68,14 @@ public class FichadoDTO {
 
     public void setTiempoTotalDia(final Double tiempoTotalDia) {
         this.tiempoTotalDia = tiempoTotalDia;
+    }
+
+    public Set<UsuarioDTO> getFichadoUserUsuarios() {
+        return fichadoUserUsuarios;
+    }
+
+    public void setFichadoUserUsuarios(final Set<UsuarioDTO> fichadoUserUsuarios) {
+        this.fichadoUserUsuarios = fichadoUserUsuarios;
     }
 
 }

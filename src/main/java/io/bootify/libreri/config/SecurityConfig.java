@@ -43,9 +43,25 @@ public class SecurityConfig {
                 .csrf(config -> config.disable())
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/").permitAll();
-                    auth.requestMatchers("/api/**").permitAll();
-                    auth.requestMatchers("swagger-ui/**").permitAll();
-                    auth.anyRequest().authenticated();
+                    auth.requestMatchers("/prueba").permitAll();
+                    auth.requestMatchers("/cerrarSesion").permitAll();
+                    auth.requestMatchers("/documentation/**").permitAll();
+                    auth.requestMatchers("/css/**").permitAll();
+                    auth.requestMatchers("/images/**").permitAll();
+                    auth.requestMatchers("/menuEmpleado").hasRole("EMPLEADO");
+                    auth.requestMatchers("/menuSupervisor").hasRole("SUPERVISOR");
+                    auth.requestMatchers("/swagger-ui.html").permitAll();
+                    auth.requestMatchers("/usuarios/**").hasRole("SUPERVISOR");
+                    auth.requestMatchers("/fichados/**").hasRole("SUPERVISOR");
+                    auth.requestMatchers("/prestamos/**").hasRole("EMPLEADO");
+                    auth.requestMatchers("/ejemplars/**").hasRole("EMPLEADO");
+                    auth.requestMatchers("/socios/**").hasRole("EMPLEADO");
+                    auth.requestMatchers("/libros/**").hasRole("EMPLEADO");
+                    auth.requestMatchers("/revistas/**").hasRole("EMPLEADO");
+                    auth.requestMatchers("/autors/**").hasRole("EMPLEADO");
+                    auth.requestMatchers("/editorials/**").hasRole("EMPLEADO");
+                    auth.requestMatchers("/generos/**").hasRole("EMPLEADO");
+                    auth.anyRequest().hasRole("ADMIN");
                 })
                 .sessionManagement(session -> {
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

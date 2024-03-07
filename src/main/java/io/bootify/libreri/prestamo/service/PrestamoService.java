@@ -52,8 +52,20 @@ public class PrestamoService {
             System.out.println(e.getMessage());
             return null;
         }
+    }
 
 
+    public PrestamoDTO getForIsbn(final Integer isbn){
+        try{
+            PrestamoDTO prestamoDTO = prestamoRepository.findByIsbnLibro(isbn)
+                    .map(prestamo -> mapToDTO(prestamo, new PrestamoDTO()))
+                    .orElseThrow(() -> new ExceptionNoFoundPrestamo("Prestamo NO encontrado"));
+
+            return prestamoDTO;
+        }catch (ExceptionNoFoundPrestamo e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     public Integer create(final PrestamoDTO prestamoDTO) {

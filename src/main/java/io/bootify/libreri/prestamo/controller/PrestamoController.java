@@ -234,11 +234,10 @@ public class PrestamoController {
             return "redirect:/prestamos";
         }
 
-        Prestamo prestamo = prestamoRepository.findByIsbnLibro(isbn) == null ?null: prestamoRepository.findByIsbnLibro(isbn) ;
-        PrestamoDTO p = (prestamoService.get(prestamo.getIdPrestamo()) != null) ? prestamoService.get(prestamo.getIdPrestamo()): null;
+        PrestamoDTO prestamo = (prestamoService.getForIsbn(isbn) != null) ? prestamoService.getForIsbn(isbn):null;
 
-        if (p != null || prestamo != null) {
-            model.addAttribute("prestamoEncontrado", p);
+        if ( prestamo != null) {
+            model.addAttribute("prestamoEncontrado", prestamo);
 
             if(prestamo.getFechaEntrega() != null){
                 model.addAttribute("entregado","");

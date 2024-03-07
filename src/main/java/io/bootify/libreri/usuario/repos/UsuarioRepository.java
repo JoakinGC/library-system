@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
@@ -45,8 +46,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
 
 
-    @Query("select u from Usuario as u where u.nombre  = ?1")
-    Optional<Usuario> getName(String name);
+    @Query(value = "select * from Usuario as u where u.nombre  = :nombre limit 1;",nativeQuery = true)
+    Optional<Usuario> getName(@Param("nombre") String name);
+
 
 
 }

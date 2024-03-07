@@ -42,7 +42,7 @@
     <nav class="nav-container">
 
 
-        <a th:href="@{/menuSupervisor}" >Principal</a>
+        <a th:href="@{/menuEmpleado}" >Principal</a>
 
         <a th:href="@{/prestamos}" >Prestamos</a>
 
@@ -60,7 +60,7 @@
         <a th:href="@{/revistas}" >Revistas</a>
 
 
-        <a th:href="@{/}" >Cerrar Sesión</a>
+        <a th:href="@{/cerrarSesion}" class="va">Cerrar Sesión</a>
 
     </nav>
     <main class="container-main">
@@ -79,11 +79,6 @@
             </div>
         </div>
         <!--Prestamo -->
-
-        <!--Prestamo Resultado busqueda-->
-
-
-
 
         <!--Prestamos List-->
         <div th:if="${prestamoes}" class="content-main">
@@ -108,9 +103,6 @@
             </div>
             <div th:if="${prestamoes.empty}">[[#{prestamo.list.empty}]]</div>
             <div th:if="${!prestamoes.empty}" class="table-responsive">
-
-
-
 
                 <table class="table table-striped table-hover align-middle">
                     <thead>

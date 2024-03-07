@@ -1,5 +1,6 @@
 package io.bootify.libreri.usuario.service;
 
+import io.bootify.libreri.errors.NotFoundUsuario;
 import io.bootify.libreri.fichado.domain.Fichado;
 import io.bootify.libreri.fichado.repos.FichadoRepository;
 import io.bootify.libreri.prestamo.domain.Prestamo;
@@ -12,9 +13,7 @@ import io.bootify.libreri.usuario.repos.UsuarioRepository;
 import io.bootify.libreri.util.WebUtils;
 import jakarta.transaction.Transactional;
 import java.time.OffsetDateTime;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
@@ -83,6 +82,9 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
     }
 
+
+
+
     public void delete(final Integer idUser) {
         usuarioRepository.deleteById(idUser);
     }
@@ -97,9 +99,16 @@ public class UsuarioService {
         usuarioDTO.setDni(usuario.getDni());
         usuarioDTO.setEdad(usuario.getEdad());
         usuarioDTO.setIdSuper(usuario.getIdSuper());
-        usuarioDTO.setFichadoUserFichadoes(usuario.getFichadoUserFichadoes().stream()
-                .map(fichado -> fichado.getIdFichado())
-                .toList());
+
+        if(usuario.getFichadoUserFichadoes() == null){
+            System.out.println("Esta vacio los fichados");
+            usuarioDTO.setFichadoUserFichadoes(new HashSet<>());
+        } else if (usuario.getFichadoUserFichadoes() != null) {
+            System.out.println("No es nullo");
+            usuarioDTO.setFichadoUserFichadoes(usuario.getFichadoUserFichadoes().stream()
+                    .map(fichado -> fichado.getIdFichado())
+                    .collect(Collectors.toSet()));
+        }
 
         usuarioDTO.setRol(usuario.getRol().getIdRol());
         return usuarioDTO;
@@ -152,6 +161,10 @@ public class UsuarioService {
 
     public void testeoProductividad(){
         usuarioRepository.productividad();
+    }
+
+    public UsuarioRepository getUsuarioRepository() {
+        return usuarioRepository;
     }
 
 
