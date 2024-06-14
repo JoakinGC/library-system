@@ -1,7 +1,6 @@
 # Libreri
 
-This app was created with Bootify.io - tips on working with the code [can be found here](https://bootify.io/next-steps/).
-Feel free to contact us for further questions.
+The public version of a project to create a library system
 
 ## Development
 
@@ -52,12 +51,22 @@ mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=io.bootify/libr
 
 ## Further readings
 
-* [Maven docs](https://maven.apache.org/guides/index.html)  
-* [Spring Boot reference](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)  
-* [Spring Data JPA reference](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)  
-* [Thymeleaf docs](https://www.thymeleaf.org/documentation.html)  
-* [Webpack concepts](https://webpack.js.org/concepts/)  
-* [npm docs](https://docs.npmjs.com/)  
-* [Bootstrap docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/)  
-* [Htmx in a nutshell](https://htmx.org/docs/)  
-* [Learn Spring Boot with Thymeleaf](https://www.wimdeblauwe.com/books/taming-thymeleaf/)  
+* [Maven docs](https://maven.apache.org/guides/index.html)
+* [Spring Boot reference](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
+* [Spring Data JPA reference](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)
+* [Thymeleaf docs](https://www.thymeleaf.org/documentation.html)
+* [Webpack concepts](https://webpack.js.org/concepts/)
+* [npm docs](https://docs.npmjs.com/)
+* [Bootstrap docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+* [Htmx in a nutshell](https://htmx.org/docs/)
+* [Learn Spring Boot with Thymeleaf](https://www.wimdeblauwe.com/books/taming-thymeleaf/)
+
+## Screenshots
+
+[![logIn.png](https://i.postimg.cc/0y7FWv7j/logIn.png)](https://postimg.cc/Wdb5zQWc)
+[![menu-Empleado.png](https://i.postimg.cc/sDkb4xQb/menu-Empleado.png)](https://postimg.cc/F7xP99xx)
+[![menu-Empleado.png](https://i.postimg.cc/sDkb4xQb/menu-Empleado.png)](https://postimg.cc/F7xP99xx)
+[![ejemplars.png](https://i.postimg.cc/XNDRXQVj/ejemplars.png)](https://postimg.cc/Thg74jLF)
+[![menu-Supervisor.png](https://i.postimg.cc/PrpBDYxm/menu-Supervisor.png)](https://postimg.cc/1fSChgDt)
+[![empleados.png](https://i.postimg.cc/V6J3FCgQ/empleados.png)](https://postimg.cc/jwrgxCBZ)
+
