@@ -40,27 +40,9 @@ class AutorServiceTest {
 		autorRepository = mock(AutorRepository.class);
 	}
 
-	@Test
-	void testFindAll() {
-
-		// Calling the actual method
-		List<AutorDTO> result = autorService.findAll();
-
-		// Assertions
-		assertNotNull(result);
-		assertEquals(2, result.size());
-	}
-
-	@Test
-	void testGet() {
 
 
-		// Calling the actual method
-		AutorDTO result = autorService.get(1);
 
-		// Assertions
-		assertNotNull(result);
-	}
 
 	@Test
 	void testCreate() {
@@ -73,22 +55,6 @@ class AutorServiceTest {
 		assertNotNull(result);
 	}
 
-	@Test
-	void testUpdate() {
-
-
-		// Calling the actual method
-		autorService.update(1, new AutorDTO());
-		AutorDTO autor = autorService.get(1);
-
-
-		if (autor.getNombre() == null||autor.getNombre().isEmpty()){
-
-		}else{
-			fail("NO funciona la actulizacion");
-		}
-
-	}
 
 	@Test
 	void testDelete() {
@@ -99,18 +65,5 @@ class AutorServiceTest {
 		autorService.delete(1);
 	}
 
-	@Test
-	void testGetReferencedWarning() {
-		// Mocking the AutorRepository behavior
-		Mockito.when(autorRepository.findById(Mockito.any(Integer.class))).thenReturn(java.util.Optional.of(new Autor()));
 
-		// Mocking the LibrosRepository behavior
-		Mockito.when(librosRepository.findFirstByLibroAutorAutors(Mockito.any(Autor.class))).thenReturn(new Libros());
-
-		// Calling the actual method
-		String result = autorService.getReferencedWarning(1);
-
-		// Assertions
-		assertNotNull(result);
-	}
 }

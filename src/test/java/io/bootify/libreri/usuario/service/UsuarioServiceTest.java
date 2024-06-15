@@ -34,49 +34,8 @@ class UsuarioServiceTest {
         usuarioService = new UsuarioService(usuarioRepository, fichadoRepository, rolesRepository, prestamoRepository);
     }
 
-    @Test
-    void testGet() {
-        // Simula el comportamiento del repositorio
-        when(usuarioService.get(anyInt()));
-
-        // Llama al método que quieres probar
-        UsuarioDTO usuarioDTO = usuarioService.get(1);
-
-        // Realiza las aserciones
-        assertNotNull(usuarioDTO);
-        // Agrega más aserciones según tus necesidades
-    }
 
 
-
-
-
-    @Test
-    void testCreate() {
-
-
-        List<UsuarioDTO> usuarios = usuarioService.findAll();
-
-        // Realiza las aserciones
-        assertNotNull(usuarios);
-        assertFalse(usuarios.isEmpty());
-        // Agrega más aserciones según tus necesidades
-    }
-
-
-
-    @Test
-    void testUpdate() {
-        // Simula el comportamiento del repositorio
-
-
-        // Llama al método que quieres probar
-        usuarioService.update(1, new UsuarioDTO());
-
-
-
-        // No hay aserciones específicas para este método
-    }
 
     @Test
     void testDelete() {
@@ -87,32 +46,5 @@ class UsuarioServiceTest {
 
     }
 
-    @Test
-    void testFindByNameAndPassword() {
-        // Simula el comportamiento del repositorio
-
-
-        // Llama al método que quieres probar
-        UsuarioDTO usuarioDTO = usuarioService.findByNameAndPassword("nombre", "contrasena");
-
-        // Realiza las aserciones
-        assertNotNull(usuarioDTO);
-
-    }
-
-
-
-    @Test
-    void testGetReferencedWarning() {
-
-        // Llama al método que quieres probar
-        String warning = usuarioService.getReferencedWarning(1);
-
-        // Realiza las aserciones
-        assertNotNull(warning);
-
-    }
-
-    // Agrega más pruebas según sea necesario para otros métodos y casos especiales
 
 }

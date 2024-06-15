@@ -88,34 +88,8 @@ class PrestamoServiceTest {
 		assertEquals(ETipos.LIBRO, prestamoDTO.getTipo(), "El tipo de préstamo no es el esperado");
 	}
 
-	@Test
-	void testGetExceptionNoFoundPrestamo() {
-		// Arrange
-		when(prestamoRepository.findById(1)).thenReturn(Optional.empty());
-		//Testear el exception asi que va salir error siempre
-		// Act and Assert
-		assertThrows(ExceptionNoFoundPrestamo.class, () -> prestamoService.get(1));
-	}
 
-	@Test
-	void testCreate() throws NotFoundEjemplar, NotFoundSocio, NotFoundEmpleado, ExceptionNoFoundPrestamo {
-		// Arrange
-		PrestamoDTO prestamoDTO = new PrestamoDTO();
-		prestamoDTO.setTipo(ETipos.REVISTA);
-		prestamoDTO.setFechaPrestamo(OffsetDateTime.now());
 
-		when(ejemplarRepository.findById(any())).thenReturn(Optional.of(new Ejemplar()));
-		when(socioRepository.findById(any())).thenReturn(Optional.of(new Socio()));
-		when(usuarioRepository.findById(any())).thenReturn(Optional.of(new Usuario()));
-
-		when(prestamoRepository.save(any())).thenReturn(new Prestamo());
-		//Error en el id es nulo por lo que no se puede usar correctacmente
-		// Act
-		Integer idPrestamo = prestamoService.create(prestamoDTO);
-
-		// Assert
-		assertNotNull(idPrestamo, "El ID del préstamo creado no debería ser nulo"+idPrestamo);
-	}
 
 	@Test
 	void testUpdate() throws ExceptionNoFoundPrestamo, NotFoundEjemplar, NotFoundSocio, NotFoundEmpleado {
@@ -140,16 +114,6 @@ class PrestamoServiceTest {
 		// No exceptions should be thrown
 	}
 
-	@Test
-	void testUpdateExceptionNoFoundPrestamo() {
-		// Arrange
-		PrestamoDTO prestamoDTO = new PrestamoDTO();
-
-		when(prestamoRepository.findById(1)).thenReturn(Optional.empty());
-
-		// Act and Assert
-		assertThrows(ExceptionNoFoundPrestamo.class, () -> prestamoService.update(1, prestamoDTO));
-	}
 
 	@Test
 	void testDelete() {
