@@ -67,7 +67,7 @@ public class Inicializer implements CommandLineRunner {
             if(usu2 ==  null){
                 UsuarioDTO supervisor = new UsuarioDTO();
                 supervisor.setIdUser(2);
-                supervisor.setNombre("Rancio");
+                supervisor.setNombre("Juan");
                 supervisor.setApellido("El Manzanó");
                 supervisor.setIdSuper(1);
                 supervisor.setDiaAlta(OffsetDateTime.now());
@@ -81,7 +81,7 @@ public class Inicializer implements CommandLineRunner {
                 UsuarioDTO empleado = new UsuarioDTO();
                 empleado.setIdUser(3);
                 empleado.setNombre("Ruben");
-                empleado.setApellido("En Demoniado");
+                empleado.setApellido("Perez");
                 empleado.setDiaAlta(OffsetDateTime.now());
                 empleado.setContresena("pepe3");
                 empleado.setRol(3);

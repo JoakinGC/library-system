@@ -1,0 +1,12 @@
+.mvn
+target
+mvnw
+mvnw.cmd
+
+node_modules/
+target/
+.git/
+.idea/
+.vscode/
+*.log
+.DS_Store

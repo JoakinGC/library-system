@@ -80,7 +80,7 @@ public class SecurityConfig {
                 .roles("ADMIN")
                 .build());
 
-        manager.createUser(User.withUsername("Rancio")
+        manager.createUser(User.withUsername("Juan")
                 .password("pepe2")
                 .roles("SUPERVISOR")
                 .build());
