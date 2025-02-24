@@ -9,6 +9,7 @@ node_modules/
 node/
 src/main/resources/application-prod.properties
 src/main/resources/application-local.properties
+package-lock.json
 
 ### STS ###
 .apt_generated

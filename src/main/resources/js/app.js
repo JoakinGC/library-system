@@ -1,4 +1,4 @@
 import 'bootstrap';
 import 'htmx.org';
-import 'scss/app.scss';
+import '../scss/app.scss';
 
