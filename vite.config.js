@@ -1,4 +1,3 @@
-// vite.config.js
 import { defineConfig } from 'vite';
 import autoprefixer from 'autoprefixer';
 import path from 'path';
@@ -7,8 +6,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default defineConfig(({ mode }) => {
-  const isProduction = mode === 'production';
+export default defineConfig(() => {
+  
+  
 
   return {
     
@@ -39,7 +39,6 @@ export default defineConfig(({ mode }) => {
 
     server: {
       port: 8081,
-      ...( !isProduction && {
         proxy: {
           '^/(?!js|css|assets)': {
             target: 'http://localhost:8080',
@@ -47,7 +46,7 @@ export default defineConfig(({ mode }) => {
             secure: false
           }
         }
-      }),
+      },
       watch: {
         include: [
           path.join(__dirname, 'src', 'main', 'resources', 'templates', '**/*.html'),
@@ -56,5 +55,4 @@ export default defineConfig(({ mode }) => {
         ]
       }
     }
-  };
-});
+  });
