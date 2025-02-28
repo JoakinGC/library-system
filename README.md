@@ -2,6 +2,15 @@
 
 The public version of a project to create a library system.
 
+## Design
+
+You can look at the project design:
+
+
+![Figma](https://www.figma.com/design/Whpr9UMacRP7UOy9pe7rUM/Figma-basics?node-id=1669-162202&p=f&t=xAinQSjV80FKOfJC-0)
+
+
+
 ## Development
 
 Update your local database connection in `application.properties` or create your own `application-local.properties` file to override settings for development.
@@ -61,6 +70,12 @@ gradle test
 ## Architecture
 
 The project follows the MVC (Model-View-Controller) architecture. However, there are versions of this project using different architectures if you want to compare and experiment with different structures.
+
+![Scheme UML](schemes/UMLDiagram.drawio.png)
+
+And entity relationship model schema:
+
+![Scheme ERM](schemes/modeloNetidadRelacion.png)
 
 ## Deployment System
 
